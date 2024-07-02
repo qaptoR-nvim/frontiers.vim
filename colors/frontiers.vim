@@ -1,26 +1,26 @@
 " -----------------------------------------------------------------------------
-" Name:         frontier
+" Name:         frontiers
 " Description:  A espresso-, kimbie-, gruvbox inspired theme
 " Author:       qaptoR <admin@roccoruscitt.ca>
-" Website:      https://github.com/qaptoR-nvim/frontier.nvim
+" Website:      https://github.com/qaptoR-nvim/frontiers.nvim
 " License:      MIT
 " -----------------------------------------------------------------------------
 
 " Initialization: {{{
-let s:configuration = frontier#get_configuration()
-let s:palette = frontier#get_palette(s:configuration.background, s:configuration.colors_override)
+let s:configuration = frontiers#get_configuration()
+let s:palette = frontiers#get_palette(s:configuration.background, s:configuration.colors_override)
 let s:path = expand('<sfile>:p') " the path of this script
 let s:last_modified = 'Tue Jun 25 13:38:33 UTC 2024'
-let g:frontier_loaded_file_types = []
+let g:frontiers_loaded_file_types = []
 
-if !(exists('g:colors_name') && g:colors_name ==# 'frontier' && s:configuration.better_performance)
+if !(exists('g:colors_name') && g:colors_name ==# 'frontiers' && s:configuration.better_performance)
   highlight clear
   if exists('syntax_on')
     syntax reset
   endif
 endif
 
-let g:colors_name = 'frontier'
+let g:colors_name = 'frontiers'
 
 if !(has('termguicolors') && &termguicolors) && !has('gui_running') && &t_Co != 256
   finish
@@ -29,192 +29,192 @@ endif
 " Common Highlight Groups: {{{
 " UI: {{{
 if s:configuration.transparent_background >= 1
-  call frontier#highlight('Normal', s:palette.fg, s:palette.none)
-  call frontier#highlight('NormalNC', s:palette.fg, s:palette.none)
-  call frontier#highlight('Terminal', s:palette.fg, s:palette.none)
+  call frontiers#highlight('Normal', s:palette.fg, s:palette.none)
+  call frontiers#highlight('NormalNC', s:palette.fg, s:palette.none)
+  call frontiers#highlight('Terminal', s:palette.fg, s:palette.none)
   if s:configuration.show_eob
-    call frontier#highlight('EndOfBuffer', s:palette.bg4, s:palette.none)
+    call frontiers#highlight('EndOfBuffer', s:palette.bg4, s:palette.none)
   else
-    call frontier#highlight('EndOfBuffer', s:palette.bg0, s:palette.none)
+    call frontiers#highlight('EndOfBuffer', s:palette.bg0, s:palette.none)
   endif
   if s:configuration.ui_contrast ==# 'low'
-    call frontier#highlight('FoldColumn', s:palette.bg5, s:palette.none)
+    call frontiers#highlight('FoldColumn', s:palette.bg5, s:palette.none)
   else
-    call frontier#highlight('FoldColumn', s:palette.grey0, s:palette.none)
+    call frontiers#highlight('FoldColumn', s:palette.grey0, s:palette.none)
   endif
-  call frontier#highlight('Folded', s:palette.grey1, s:palette.none)
-  call frontier#highlight('SignColumn', s:palette.fg, s:palette.none)
-  call frontier#highlight('ToolbarLine', s:palette.fg, s:palette.none)
+  call frontiers#highlight('Folded', s:palette.grey1, s:palette.none)
+  call frontiers#highlight('SignColumn', s:palette.fg, s:palette.none)
+  call frontiers#highlight('ToolbarLine', s:palette.fg, s:palette.none)
 else
-  call frontier#highlight('Normal', s:palette.fg, s:palette.bg0)
+  call frontiers#highlight('Normal', s:palette.fg, s:palette.bg0)
   if s:configuration.dim_inactive_windows
-    call frontier#highlight('NormalNC', s:palette.fg, s:palette.bg0_h)
+    call frontiers#highlight('NormalNC', s:palette.fg, s:palette.bg0_h)
   else
-    call frontier#highlight('NormalNC', s:palette.fg, s:palette.bg0)
+    call frontiers#highlight('NormalNC', s:palette.fg, s:palette.bg0)
   endif
-  call frontier#highlight('Terminal', s:palette.fg, s:palette.bg0)
+  call frontiers#highlight('Terminal', s:palette.fg, s:palette.bg0)
   if s:configuration.show_eob
-    call frontier#highlight('EndOfBuffer', s:palette.bg4, s:palette.none)
+    call frontiers#highlight('EndOfBuffer', s:palette.bg4, s:palette.none)
   else
-    call frontier#highlight('EndOfBuffer', s:palette.bg0, s:palette.none)
+    call frontiers#highlight('EndOfBuffer', s:palette.bg0, s:palette.none)
   endif
-  call frontier#highlight('Folded', s:palette.grey1, s:palette.bg1)
-  call frontier#highlight('ToolbarLine', s:palette.fg, s:palette.bg2)
+  call frontiers#highlight('Folded', s:palette.grey1, s:palette.bg1)
+  call frontiers#highlight('ToolbarLine', s:palette.fg, s:palette.bg2)
   if s:configuration.sign_column_background ==# 'grey'
-    call frontier#highlight('SignColumn', s:palette.fg, s:palette.bg1)
-    call frontier#highlight('FoldColumn', s:palette.grey2, s:palette.bg1)
+    call frontiers#highlight('SignColumn', s:palette.fg, s:palette.bg1)
+    call frontiers#highlight('FoldColumn', s:palette.grey2, s:palette.bg1)
   else
-    call frontier#highlight('SignColumn', s:palette.fg, s:palette.none)
+    call frontiers#highlight('SignColumn', s:palette.fg, s:palette.none)
     if s:configuration.ui_contrast ==# 'low'
-      call frontier#highlight('FoldColumn', s:palette.bg5, s:palette.none)
+      call frontiers#highlight('FoldColumn', s:palette.bg5, s:palette.none)
     else
-      call frontier#highlight('FoldColumn', s:palette.grey0, s:palette.none)
+      call frontiers#highlight('FoldColumn', s:palette.grey0, s:palette.none)
     endif
   endif
 endif
-call frontier#highlight('IncSearch', s:palette.bg0, s:palette.red)
-call frontier#highlight('Search', s:palette.bg0, s:palette.green)
+call frontiers#highlight('IncSearch', s:palette.bg0, s:palette.red)
+call frontiers#highlight('Search', s:palette.bg0, s:palette.green)
 highlight! link CurSearch IncSearch
-call frontier#highlight('ColorColumn', s:palette.none, s:palette.bg1)
+call frontiers#highlight('ColorColumn', s:palette.none, s:palette.bg1)
 if s:configuration.ui_contrast ==# 'low'
-  call frontier#highlight('Conceal', s:palette.bg5, s:palette.none)
+  call frontiers#highlight('Conceal', s:palette.bg5, s:palette.none)
 else
-  call frontier#highlight('Conceal', s:palette.grey0, s:palette.none)
+  call frontiers#highlight('Conceal', s:palette.grey0, s:palette.none)
 endif
 if s:configuration.cursor ==# 'auto'
-  call frontier#highlight('Cursor', s:palette.none, s:palette.none, 'reverse')
+  call frontiers#highlight('Cursor', s:palette.none, s:palette.none, 'reverse')
 else
-  call frontier#highlight('Cursor', s:palette.bg0, s:palette[s:configuration.cursor])
+  call frontiers#highlight('Cursor', s:palette.bg0, s:palette[s:configuration.cursor])
 endif
 highlight! link vCursor Cursor
 highlight! link iCursor Cursor
 highlight! link lCursor Cursor
 highlight! link CursorIM Cursor
 if &diff
-  call frontier#highlight('CursorLine', s:palette.none, s:palette.none, 'underline')
-  call frontier#highlight('CursorColumn', s:palette.none, s:palette.none, 'bold')
+  call frontiers#highlight('CursorLine', s:palette.none, s:palette.none, 'underline')
+  call frontiers#highlight('CursorColumn', s:palette.none, s:palette.none, 'bold')
 else
-  call frontier#highlight('CursorLine', s:palette.none, s:palette.bg1)
-  call frontier#highlight('CursorColumn', s:palette.none, s:palette.bg1)
+  call frontiers#highlight('CursorLine', s:palette.none, s:palette.bg1)
+  call frontiers#highlight('CursorColumn', s:palette.none, s:palette.bg1)
 endif
 if s:configuration.ui_contrast ==# 'low'
-  call frontier#highlight('LineNr', s:palette.bg5, s:palette.none)
+  call frontiers#highlight('LineNr', s:palette.bg5, s:palette.none)
   if &diff
-    call frontier#highlight('CursorLineNr', s:palette.grey1, s:palette.none, 'underline')
+    call frontiers#highlight('CursorLineNr', s:palette.grey1, s:palette.none, 'underline')
   elseif (&relativenumber == 1 && &cursorline == 0) || s:configuration.sign_column_background ==# 'none'
-    call frontier#highlight('CursorLineNr', s:palette.grey1, s:palette.none)
+    call frontiers#highlight('CursorLineNr', s:palette.grey1, s:palette.none)
   else
-    call frontier#highlight('CursorLineNr', s:palette.grey1, s:palette.bg1)
+    call frontiers#highlight('CursorLineNr', s:palette.grey1, s:palette.bg1)
   endif
 else
-  call frontier#highlight('LineNr', s:palette.grey0, s:palette.none)
+  call frontiers#highlight('LineNr', s:palette.grey0, s:palette.none)
   if &diff
-    call frontier#highlight('CursorLineNr', s:palette.grey2, s:palette.none, 'underline')
+    call frontiers#highlight('CursorLineNr', s:palette.grey2, s:palette.none, 'underline')
   elseif (&relativenumber == 1 && &cursorline == 0) || s:configuration.sign_column_background ==# 'none'
-    call frontier#highlight('CursorLineNr', s:palette.grey2, s:palette.none)
+    call frontiers#highlight('CursorLineNr', s:palette.grey2, s:palette.none)
   else
-    call frontier#highlight('CursorLineNr', s:palette.grey2, s:palette.bg1)
+    call frontiers#highlight('CursorLineNr', s:palette.grey2, s:palette.bg1)
   endif
 endif
-call frontier#highlight('DiffAdd', s:palette.none, s:palette.bg_green)
-call frontier#highlight('DiffChange', s:palette.none, s:palette.bg_blue)
-call frontier#highlight('DiffDelete', s:palette.none, s:palette.bg_red)
-call frontier#highlight('DiffText', s:palette.bg0, s:palette.blue)
-call frontier#highlight('Directory', s:palette.green, s:palette.none)
-call frontier#highlight('ErrorMsg', s:palette.red, s:palette.none, 'bold,underline')
-call frontier#highlight('WarningMsg', s:palette.yellow, s:palette.none, 'bold')
-call frontier#highlight('ModeMsg', s:palette.fg, s:palette.none, 'bold')
-call frontier#highlight('MoreMsg', s:palette.yellow, s:palette.none, 'bold')
-call frontier#highlight('MatchParen', s:palette.none, s:palette.bg4)
-call frontier#highlight('NonText', s:palette.bg4, s:palette.none)
-call frontier#highlight('Whitespace', s:palette.bg4, s:palette.none)
-call frontier#highlight('SpecialKey', s:palette.bg3, s:palette.none)
-call frontier#highlight('Pmenu', s:palette.fg, s:palette.bg2)
-call frontier#highlight('PmenuSbar', s:palette.none, s:palette.bg2)
-call frontier#highlight('PmenuSel', s:palette.bg0, s:palette.statusline1)
-call frontier#highlight('PmenuKind', s:palette.green, s:palette.bg2)
-call frontier#highlight('PmenuExtra', s:palette.grey2, s:palette.bg2)
+call frontiers#highlight('DiffAdd', s:palette.none, s:palette.bg_green)
+call frontiers#highlight('DiffChange', s:palette.none, s:palette.bg_blue)
+call frontiers#highlight('DiffDelete', s:palette.none, s:palette.bg_red)
+call frontiers#highlight('DiffText', s:palette.bg0, s:palette.blue)
+call frontiers#highlight('Directory', s:palette.green, s:palette.none)
+call frontiers#highlight('ErrorMsg', s:palette.red, s:palette.none, 'bold,underline')
+call frontiers#highlight('WarningMsg', s:palette.yellow, s:palette.none, 'bold')
+call frontiers#highlight('ModeMsg', s:palette.fg, s:palette.none, 'bold')
+call frontiers#highlight('MoreMsg', s:palette.yellow, s:palette.none, 'bold')
+call frontiers#highlight('MatchParen', s:palette.none, s:palette.bg4)
+call frontiers#highlight('NonText', s:palette.bg4, s:palette.none)
+call frontiers#highlight('Whitespace', s:palette.bg4, s:palette.none)
+call frontiers#highlight('SpecialKey', s:palette.bg3, s:palette.none)
+call frontiers#highlight('Pmenu', s:palette.fg, s:palette.bg2)
+call frontiers#highlight('PmenuSbar', s:palette.none, s:palette.bg2)
+call frontiers#highlight('PmenuSel', s:palette.bg0, s:palette.statusline1)
+call frontiers#highlight('PmenuKind', s:palette.green, s:palette.bg2)
+call frontiers#highlight('PmenuExtra', s:palette.grey2, s:palette.bg2)
 highlight! link WildMenu PmenuSel
-call frontier#highlight('PmenuThumb', s:palette.none, s:palette.grey0)
+call frontiers#highlight('PmenuThumb', s:palette.none, s:palette.grey0)
 if s:configuration.float_style ==# 'dim'
-  call frontier#highlight('NormalFloat', s:palette.fg, s:palette.bg0_h)
-  call frontier#highlight('FloatBorder', s:palette.grey1, s:palette.bg0_h)
-  call frontier#highlight('FloatTitle', s:palette.fg, s:palette.bg0_h, 'bold')
+  call frontiers#highlight('NormalFloat', s:palette.fg, s:palette.bg0_h)
+  call frontiers#highlight('FloatBorder', s:palette.grey1, s:palette.bg0_h)
+  call frontiers#highlight('FloatTitle', s:palette.fg, s:palette.bg0_h, 'bold')
 else
-  call frontier#highlight('NormalFloat', s:palette.fg, s:palette.bg2)
-  call frontier#highlight('FloatBorder', s:palette.grey1, s:palette.bg2)
-  call frontier#highlight('FloatTitle', s:palette.fg, s:palette.bg2, 'bold')
+  call frontiers#highlight('NormalFloat', s:palette.fg, s:palette.bg2)
+  call frontiers#highlight('FloatBorder', s:palette.grey1, s:palette.bg2)
+  call frontiers#highlight('FloatTitle', s:palette.fg, s:palette.bg2, 'bold')
 endif
-call frontier#highlight('Question', s:palette.yellow, s:palette.none)
+call frontiers#highlight('Question', s:palette.yellow, s:palette.none)
 if s:configuration.spell_foreground ==# 'none'
-  call frontier#highlight('SpellBad', s:palette.none, s:palette.none, 'undercurl', s:palette.red)
-  call frontier#highlight('SpellCap', s:palette.none, s:palette.none, 'undercurl', s:palette.blue)
-  call frontier#highlight('SpellLocal', s:palette.none, s:palette.none, 'undercurl', s:palette.aqua)
-  call frontier#highlight('SpellRare', s:palette.none, s:palette.none, 'undercurl', s:palette.purple)
+  call frontiers#highlight('SpellBad', s:palette.none, s:palette.none, 'undercurl', s:palette.red)
+  call frontiers#highlight('SpellCap', s:palette.none, s:palette.none, 'undercurl', s:palette.blue)
+  call frontiers#highlight('SpellLocal', s:palette.none, s:palette.none, 'undercurl', s:palette.aqua)
+  call frontiers#highlight('SpellRare', s:palette.none, s:palette.none, 'undercurl', s:palette.purple)
 else
-  call frontier#highlight('SpellBad', s:palette.red, s:palette.none, 'undercurl', s:palette.red)
-  call frontier#highlight('SpellCap', s:palette.blue, s:palette.none, 'undercurl', s:palette.blue)
-  call frontier#highlight('SpellLocal', s:palette.aqua, s:palette.none, 'undercurl', s:palette.aqua)
-  call frontier#highlight('SpellRare', s:palette.purple, s:palette.none, 'undercurl', s:palette.purple)
+  call frontiers#highlight('SpellBad', s:palette.red, s:palette.none, 'undercurl', s:palette.red)
+  call frontiers#highlight('SpellCap', s:palette.blue, s:palette.none, 'undercurl', s:palette.blue)
+  call frontiers#highlight('SpellLocal', s:palette.aqua, s:palette.none, 'undercurl', s:palette.aqua)
+  call frontiers#highlight('SpellRare', s:palette.purple, s:palette.none, 'undercurl', s:palette.purple)
 endif
 if s:configuration.transparent_background == 2
-  call frontier#highlight('StatusLine', s:palette.grey1, s:palette.none)
-  call frontier#highlight('StatusLineTerm', s:palette.grey1, s:palette.none)
-  call frontier#highlight('StatusLineNC', s:palette.grey0, s:palette.none)
-  call frontier#highlight('StatusLineTermNC', s:palette.grey0, s:palette.none)
-  call frontier#highlight('TabLine', s:palette.grey2, s:palette.bg3)
-  call frontier#highlight('TabLineFill', s:palette.grey1, s:palette.none)
-  call frontier#highlight('TabLineSel', s:palette.bg0, s:palette.statusline1)
+  call frontiers#highlight('StatusLine', s:palette.grey1, s:palette.none)
+  call frontiers#highlight('StatusLineTerm', s:palette.grey1, s:palette.none)
+  call frontiers#highlight('StatusLineNC', s:palette.grey0, s:palette.none)
+  call frontiers#highlight('StatusLineTermNC', s:palette.grey0, s:palette.none)
+  call frontiers#highlight('TabLine', s:palette.grey2, s:palette.bg3)
+  call frontiers#highlight('TabLineFill', s:palette.grey1, s:palette.none)
+  call frontiers#highlight('TabLineSel', s:palette.bg0, s:palette.statusline1)
   if has('nvim')
-    call frontier#highlight('WinBar', s:palette.grey1, s:palette.none, 'bold')
-    call frontier#highlight('WinBarNC', s:palette.grey0, s:palette.none)
+    call frontiers#highlight('WinBar', s:palette.grey1, s:palette.none, 'bold')
+    call frontiers#highlight('WinBarNC', s:palette.grey0, s:palette.none)
   endif
 else
-  call frontier#highlight('StatusLine', s:palette.grey1, s:palette.bg2)
-  call frontier#highlight('StatusLineTerm', s:palette.grey1, s:palette.bg1)
-  call frontier#highlight('StatusLineNC', s:palette.grey1, s:palette.bg1)
-  call frontier#highlight('StatusLineTermNC', s:palette.grey1, s:palette.bg0)
-  call frontier#highlight('TabLine', s:palette.grey2, s:palette.bg3)
-  call frontier#highlight('TabLineFill', s:palette.grey1, s:palette.bg1)
-  call frontier#highlight('TabLineSel', s:palette.bg0, s:palette.statusline1)
+  call frontiers#highlight('StatusLine', s:palette.grey1, s:palette.bg2)
+  call frontiers#highlight('StatusLineTerm', s:palette.grey1, s:palette.bg1)
+  call frontiers#highlight('StatusLineNC', s:palette.grey1, s:palette.bg1)
+  call frontiers#highlight('StatusLineTermNC', s:palette.grey1, s:palette.bg0)
+  call frontiers#highlight('TabLine', s:palette.grey2, s:palette.bg3)
+  call frontiers#highlight('TabLineFill', s:palette.grey1, s:palette.bg1)
+  call frontiers#highlight('TabLineSel', s:palette.bg0, s:palette.statusline1)
   if has('nvim')
-    call frontier#highlight('WinBar', s:palette.grey1, s:palette.bg2, 'bold')
-    call frontier#highlight('WinBarNC', s:palette.grey1, s:palette.bg1)
+    call frontiers#highlight('WinBar', s:palette.grey1, s:palette.bg2, 'bold')
+    call frontiers#highlight('WinBarNC', s:palette.grey1, s:palette.bg1)
   endif
 endif
 if s:configuration.dim_inactive_windows
-  call frontier#highlight('VertSplit', s:palette.bg4, s:palette.bg0_h)
+  call frontiers#highlight('VertSplit', s:palette.bg4, s:palette.bg0_h)
 else
-  call frontier#highlight('VertSplit', s:palette.bg4, s:palette.none)
+  call frontiers#highlight('VertSplit', s:palette.bg4, s:palette.none)
 endif
 highlight! link WinSeparator VertSplit
-call frontier#highlight('Visual', s:palette.none, s:palette.bg_orange)
-call frontier#highlight('VisualNOS', s:palette.none, s:palette.bg_orange)
-call frontier#highlight('QuickFixLine', s:palette.purple, s:palette.none, 'bold')
-call frontier#highlight('Debug', s:palette.orange, s:palette.none)
-call frontier#highlight('debugPC', s:palette.bg0, s:palette.green)
-call frontier#highlight('debugBreakpoint', s:palette.bg0, s:palette.red)
-call frontier#highlight('ToolbarButton', s:palette.bg0, s:palette.green)
+call frontiers#highlight('Visual', s:palette.none, s:palette.bg_orange)
+call frontiers#highlight('VisualNOS', s:palette.none, s:palette.bg_orange)
+call frontiers#highlight('QuickFixLine', s:palette.purple, s:palette.none, 'bold')
+call frontiers#highlight('Debug', s:palette.orange, s:palette.none)
+call frontiers#highlight('debugPC', s:palette.bg0, s:palette.green)
+call frontiers#highlight('debugBreakpoint', s:palette.bg0, s:palette.red)
+call frontiers#highlight('ToolbarButton', s:palette.bg0, s:palette.green)
 if has('nvim')
-  call frontier#highlight('Substitute', s:palette.bg0, s:palette.yellow)
+  call frontiers#highlight('Substitute', s:palette.bg0, s:palette.yellow)
   if s:configuration.diagnostic_text_highlight
-    call frontier#highlight('DiagnosticError', s:palette.red, s:palette.bg_red)
-    call frontier#highlight('DiagnosticUnderlineError', s:palette.none, s:palette.bg_red, 'undercurl', s:palette.red)
-    call frontier#highlight('DiagnosticWarn', s:palette.yellow, s:palette.bg_yellow)
-    call frontier#highlight('DiagnosticUnderlineWarn', s:palette.none, s:palette.bg_yellow, 'undercurl', s:palette.yellow)
-    call frontier#highlight('DiagnosticInfo', s:palette.blue, s:palette.bg_blue)
-    call frontier#highlight('DiagnosticUnderlineInfo', s:palette.none, s:palette.bg_blue, 'undercurl', s:palette.blue)
-    call frontier#highlight('DiagnosticHint', s:palette.green, s:palette.bg_green)
-    call frontier#highlight('DiagnosticUnderlineHint', s:palette.none, s:palette.bg_green, 'undercurl', s:palette.green)
+    call frontiers#highlight('DiagnosticError', s:palette.red, s:palette.bg_red)
+    call frontiers#highlight('DiagnosticUnderlineError', s:palette.none, s:palette.bg_red, 'undercurl', s:palette.red)
+    call frontiers#highlight('DiagnosticWarn', s:palette.yellow, s:palette.bg_yellow)
+    call frontiers#highlight('DiagnosticUnderlineWarn', s:palette.none, s:palette.bg_yellow, 'undercurl', s:palette.yellow)
+    call frontiers#highlight('DiagnosticInfo', s:palette.blue, s:palette.bg_blue)
+    call frontiers#highlight('DiagnosticUnderlineInfo', s:palette.none, s:palette.bg_blue, 'undercurl', s:palette.blue)
+    call frontiers#highlight('DiagnosticHint', s:palette.green, s:palette.bg_green)
+    call frontiers#highlight('DiagnosticUnderlineHint', s:palette.none, s:palette.bg_green, 'undercurl', s:palette.green)
   else
-    call frontier#highlight('DiagnosticError', s:palette.red, s:palette.none)
-    call frontier#highlight('DiagnosticUnderlineError', s:palette.none, s:palette.none, 'undercurl', s:palette.red)
-    call frontier#highlight('DiagnosticWarn', s:palette.yellow, s:palette.none)
-    call frontier#highlight('DiagnosticUnderlineWarn', s:palette.none, s:palette.none, 'undercurl', s:palette.yellow)
-    call frontier#highlight('DiagnosticInfo', s:palette.blue, s:palette.none)
-    call frontier#highlight('DiagnosticUnderlineInfo', s:palette.none, s:palette.none, 'undercurl', s:palette.blue)
-    call frontier#highlight('DiagnosticHint', s:palette.green, s:palette.none)
-    call frontier#highlight('DiagnosticUnderlineHint', s:palette.none, s:palette.none, 'undercurl', s:palette.green)
+    call frontiers#highlight('DiagnosticError', s:palette.red, s:palette.none)
+    call frontiers#highlight('DiagnosticUnderlineError', s:palette.none, s:palette.none, 'undercurl', s:palette.red)
+    call frontiers#highlight('DiagnosticWarn', s:palette.yellow, s:palette.none)
+    call frontiers#highlight('DiagnosticUnderlineWarn', s:palette.none, s:palette.none, 'undercurl', s:palette.yellow)
+    call frontiers#highlight('DiagnosticInfo', s:palette.blue, s:palette.none)
+    call frontiers#highlight('DiagnosticUnderlineInfo', s:palette.none, s:palette.none, 'undercurl', s:palette.blue)
+    call frontiers#highlight('DiagnosticHint', s:palette.green, s:palette.none)
+    call frontiers#highlight('DiagnosticUnderlineHint', s:palette.none, s:palette.none, 'undercurl', s:palette.green)
   endif
   highlight! link DiagnosticFloatingError ErrorFloat
   highlight! link DiagnosticFloatingWarn WarningFloat
@@ -262,120 +262,120 @@ if has('nvim')
 endif
 " }}}
 " Syntax: {{{
-call frontier#highlight('Boolean', s:palette.purple, s:palette.none)
-call frontier#highlight('Number', s:palette.purple, s:palette.none)
-call frontier#highlight('Float', s:palette.purple, s:palette.none)
+call frontiers#highlight('Boolean', s:palette.purple, s:palette.none)
+call frontiers#highlight('Number', s:palette.purple, s:palette.none)
+call frontiers#highlight('Float', s:palette.purple, s:palette.none)
 if s:configuration.enable_italic
-  call frontier#highlight('PreProc', s:palette.purple, s:palette.none, 'italic')
-  call frontier#highlight('PreCondit', s:palette.purple, s:palette.none, 'italic')
-  call frontier#highlight('Include', s:palette.purple, s:palette.none, 'italic')
-  call frontier#highlight('Define', s:palette.purple, s:palette.none, 'italic')
-  call frontier#highlight('Conditional', s:palette.red, s:palette.none, 'italic')
-  call frontier#highlight('Repeat', s:palette.red, s:palette.none, 'italic')
-  call frontier#highlight('Keyword', s:palette.red, s:palette.none, 'italic')
-  call frontier#highlight('Typedef', s:palette.red, s:palette.none, 'italic')
-  call frontier#highlight('Exception', s:palette.red, s:palette.none, 'italic')
-  call frontier#highlight('Statement', s:palette.red, s:palette.none, 'italic')
+  call frontiers#highlight('PreProc', s:palette.purple, s:palette.none, 'italic')
+  call frontiers#highlight('PreCondit', s:palette.purple, s:palette.none, 'italic')
+  call frontiers#highlight('Include', s:palette.purple, s:palette.none, 'italic')
+  call frontiers#highlight('Define', s:palette.purple, s:palette.none, 'italic')
+  call frontiers#highlight('Conditional', s:palette.red, s:palette.none, 'italic')
+  call frontiers#highlight('Repeat', s:palette.red, s:palette.none, 'italic')
+  call frontiers#highlight('Keyword', s:palette.red, s:palette.none, 'italic')
+  call frontiers#highlight('Typedef', s:palette.red, s:palette.none, 'italic')
+  call frontiers#highlight('Exception', s:palette.red, s:palette.none, 'italic')
+  call frontiers#highlight('Statement', s:palette.red, s:palette.none, 'italic')
 else
-  call frontier#highlight('PreProc', s:palette.purple, s:palette.none)
-  call frontier#highlight('PreCondit', s:palette.purple, s:palette.none)
-  call frontier#highlight('Include', s:palette.purple, s:palette.none)
-  call frontier#highlight('Define', s:palette.purple, s:palette.none)
-  call frontier#highlight('Conditional', s:palette.red, s:palette.none)
-  call frontier#highlight('Repeat', s:palette.red, s:palette.none)
-  call frontier#highlight('Keyword', s:palette.red, s:palette.none)
-  call frontier#highlight('Typedef', s:palette.red, s:palette.none)
-  call frontier#highlight('Exception', s:palette.red, s:palette.none)
-  call frontier#highlight('Statement', s:palette.red, s:palette.none)
+  call frontiers#highlight('PreProc', s:palette.purple, s:palette.none)
+  call frontiers#highlight('PreCondit', s:palette.purple, s:palette.none)
+  call frontiers#highlight('Include', s:palette.purple, s:palette.none)
+  call frontiers#highlight('Define', s:palette.purple, s:palette.none)
+  call frontiers#highlight('Conditional', s:palette.red, s:palette.none)
+  call frontiers#highlight('Repeat', s:palette.red, s:palette.none)
+  call frontiers#highlight('Keyword', s:palette.red, s:palette.none)
+  call frontiers#highlight('Typedef', s:palette.red, s:palette.none)
+  call frontiers#highlight('Exception', s:palette.red, s:palette.none)
+  call frontiers#highlight('Statement', s:palette.red, s:palette.none)
 endif
-call frontier#highlight('Error', s:palette.red, s:palette.none)
-call frontier#highlight('StorageClass', s:palette.orange, s:palette.none)
-call frontier#highlight('Tag', s:palette.orange, s:palette.none)
-call frontier#highlight('Label', s:palette.orange, s:palette.none)
-call frontier#highlight('Structure', s:palette.orange, s:palette.none)
-call frontier#highlight('Operator', s:palette.orange, s:palette.none)
-call frontier#highlight('Title', s:palette.orange, s:palette.none, 'bold')
-call frontier#highlight('Special', s:palette.yellow, s:palette.none)
-call frontier#highlight('SpecialChar', s:palette.yellow, s:palette.none)
-call frontier#highlight('Type', s:palette.yellow, s:palette.none)
-call frontier#highlight('Function', s:palette.green, s:palette.none)
-call frontier#highlight('String', s:palette.green, s:palette.none)
-call frontier#highlight('Character', s:palette.green, s:palette.none)
-call frontier#highlight('Constant', s:palette.aqua, s:palette.none)
-call frontier#highlight('Macro', s:palette.aqua, s:palette.none)
-call frontier#highlight('Identifier', s:palette.blue, s:palette.none)
-call frontier#highlight('Todo', s:palette.bg0, s:palette.blue, 'bold')
+call frontiers#highlight('Error', s:palette.red, s:palette.none)
+call frontiers#highlight('StorageClass', s:palette.orange, s:palette.none)
+call frontiers#highlight('Tag', s:palette.orange, s:palette.none)
+call frontiers#highlight('Label', s:palette.orange, s:palette.none)
+call frontiers#highlight('Structure', s:palette.orange, s:palette.none)
+call frontiers#highlight('Operator', s:palette.orange, s:palette.none)
+call frontiers#highlight('Title', s:palette.orange, s:palette.none, 'bold')
+call frontiers#highlight('Special', s:palette.yellow, s:palette.none)
+call frontiers#highlight('SpecialChar', s:palette.yellow, s:palette.none)
+call frontiers#highlight('Type', s:palette.yellow, s:palette.none)
+call frontiers#highlight('Function', s:palette.green, s:palette.none)
+call frontiers#highlight('String', s:palette.green, s:palette.none)
+call frontiers#highlight('Character', s:palette.green, s:palette.none)
+call frontiers#highlight('Constant', s:palette.aqua, s:palette.none)
+call frontiers#highlight('Macro', s:palette.aqua, s:palette.none)
+call frontiers#highlight('Identifier', s:palette.blue, s:palette.none)
+call frontiers#highlight('Todo', s:palette.bg0, s:palette.blue, 'bold')
 if s:configuration.disable_italic_comment
-  call frontier#highlight('Comment', s:palette.grey1, s:palette.none)
-  call frontier#highlight('SpecialComment', s:palette.grey1, s:palette.none)
+  call frontiers#highlight('Comment', s:palette.grey1, s:palette.none)
+  call frontiers#highlight('SpecialComment', s:palette.grey1, s:palette.none)
 else
-  call frontier#highlight('Comment', s:palette.grey1, s:palette.none, 'italic')
-  call frontier#highlight('SpecialComment', s:palette.grey1, s:palette.none, 'italic')
+  call frontiers#highlight('Comment', s:palette.grey1, s:palette.none, 'italic')
+  call frontiers#highlight('SpecialComment', s:palette.grey1, s:palette.none, 'italic')
 endif
-call frontier#highlight('Delimiter', s:palette.fg, s:palette.none)
-call frontier#highlight('Ignore', s:palette.grey1, s:palette.none)
-call frontier#highlight('Underlined', s:palette.none, s:palette.none, 'underline')
+call frontiers#highlight('Delimiter', s:palette.fg, s:palette.none)
+call frontiers#highlight('Ignore', s:palette.grey1, s:palette.none)
+call frontiers#highlight('Underlined', s:palette.none, s:palette.none, 'underline')
 " }}}
 " Predefined Highlight Groups: {{{
-call frontier#highlight('Fg', s:palette.fg, s:palette.none)
-call frontier#highlight('Grey', s:palette.grey1, s:palette.none)
-call frontier#highlight('Red', s:palette.red, s:palette.none)
-call frontier#highlight('Orange', s:palette.orange, s:palette.none)
-call frontier#highlight('Yellow', s:palette.yellow, s:palette.none)
-call frontier#highlight('Green', s:palette.green, s:palette.none)
-call frontier#highlight('Aqua', s:palette.aqua, s:palette.none)
-call frontier#highlight('Blue', s:palette.blue, s:palette.none)
-call frontier#highlight('Purple', s:palette.purple, s:palette.none)
+call frontiers#highlight('Fg', s:palette.fg, s:palette.none)
+call frontiers#highlight('Grey', s:palette.grey1, s:palette.none)
+call frontiers#highlight('Red', s:palette.red, s:palette.none)
+call frontiers#highlight('Orange', s:palette.orange, s:palette.none)
+call frontiers#highlight('Yellow', s:palette.yellow, s:palette.none)
+call frontiers#highlight('Green', s:palette.green, s:palette.none)
+call frontiers#highlight('Aqua', s:palette.aqua, s:palette.none)
+call frontiers#highlight('Blue', s:palette.blue, s:palette.none)
+call frontiers#highlight('Purple', s:palette.purple, s:palette.none)
 if s:configuration.enable_italic
-  call frontier#highlight('RedItalic', s:palette.red, s:palette.none, 'italic')
-  call frontier#highlight('OrangeItalic', s:palette.orange, s:palette.none, 'italic')
-  call frontier#highlight('YellowItalic', s:palette.yellow, s:palette.none, 'italic')
-  call frontier#highlight('GreenItalic', s:palette.green, s:palette.none, 'italic')
-  call frontier#highlight('AquaItalic', s:palette.aqua, s:palette.none, 'italic')
-  call frontier#highlight('BlueItalic', s:palette.blue, s:palette.none, 'italic')
-  call frontier#highlight('PurpleItalic', s:palette.purple, s:palette.none, 'italic')
+  call frontiers#highlight('RedItalic', s:palette.red, s:palette.none, 'italic')
+  call frontiers#highlight('OrangeItalic', s:palette.orange, s:palette.none, 'italic')
+  call frontiers#highlight('YellowItalic', s:palette.yellow, s:palette.none, 'italic')
+  call frontiers#highlight('GreenItalic', s:palette.green, s:palette.none, 'italic')
+  call frontiers#highlight('AquaItalic', s:palette.aqua, s:palette.none, 'italic')
+  call frontiers#highlight('BlueItalic', s:palette.blue, s:palette.none, 'italic')
+  call frontiers#highlight('PurpleItalic', s:palette.purple, s:palette.none, 'italic')
 else
-  call frontier#highlight('RedItalic', s:palette.red, s:palette.none)
-  call frontier#highlight('OrangeItalic', s:palette.orange, s:palette.none)
-  call frontier#highlight('YellowItalic', s:palette.yellow, s:palette.none)
-  call frontier#highlight('GreenItalic', s:palette.green, s:palette.none)
-  call frontier#highlight('AquaItalic', s:palette.aqua, s:palette.none)
-  call frontier#highlight('BlueItalic', s:palette.blue, s:palette.none)
-  call frontier#highlight('PurpleItalic', s:palette.purple, s:palette.none)
+  call frontiers#highlight('RedItalic', s:palette.red, s:palette.none)
+  call frontiers#highlight('OrangeItalic', s:palette.orange, s:palette.none)
+  call frontiers#highlight('YellowItalic', s:palette.yellow, s:palette.none)
+  call frontiers#highlight('GreenItalic', s:palette.green, s:palette.none)
+  call frontiers#highlight('AquaItalic', s:palette.aqua, s:palette.none)
+  call frontiers#highlight('BlueItalic', s:palette.blue, s:palette.none)
+  call frontiers#highlight('PurpleItalic', s:palette.purple, s:palette.none)
 endif
 if s:configuration.transparent_background || s:configuration.sign_column_background ==# 'none'
-  call frontier#highlight('RedSign', s:palette.red, s:palette.none)
-  call frontier#highlight('OrangeSign', s:palette.orange, s:palette.none)
-  call frontier#highlight('YellowSign', s:palette.yellow, s:palette.none)
-  call frontier#highlight('GreenSign', s:palette.green, s:palette.none)
-  call frontier#highlight('AquaSign', s:palette.aqua, s:palette.none)
-  call frontier#highlight('BlueSign', s:palette.blue, s:palette.none)
-  call frontier#highlight('PurpleSign', s:palette.purple, s:palette.none)
+  call frontiers#highlight('RedSign', s:palette.red, s:palette.none)
+  call frontiers#highlight('OrangeSign', s:palette.orange, s:palette.none)
+  call frontiers#highlight('YellowSign', s:palette.yellow, s:palette.none)
+  call frontiers#highlight('GreenSign', s:palette.green, s:palette.none)
+  call frontiers#highlight('AquaSign', s:palette.aqua, s:palette.none)
+  call frontiers#highlight('BlueSign', s:palette.blue, s:palette.none)
+  call frontiers#highlight('PurpleSign', s:palette.purple, s:palette.none)
 else
-  call frontier#highlight('RedSign', s:palette.red, s:palette.bg1)
-  call frontier#highlight('OrangeSign', s:palette.orange, s:palette.bg1)
-  call frontier#highlight('YellowSign', s:palette.yellow, s:palette.bg1)
-  call frontier#highlight('GreenSign', s:palette.green, s:palette.bg1)
-  call frontier#highlight('AquaSign', s:palette.aqua, s:palette.bg1)
-  call frontier#highlight('BlueSign', s:palette.blue, s:palette.bg1)
-  call frontier#highlight('PurpleSign', s:palette.purple, s:palette.bg1)
+  call frontiers#highlight('RedSign', s:palette.red, s:palette.bg1)
+  call frontiers#highlight('OrangeSign', s:palette.orange, s:palette.bg1)
+  call frontiers#highlight('YellowSign', s:palette.yellow, s:palette.bg1)
+  call frontiers#highlight('GreenSign', s:palette.green, s:palette.bg1)
+  call frontiers#highlight('AquaSign', s:palette.aqua, s:palette.bg1)
+  call frontiers#highlight('BlueSign', s:palette.blue, s:palette.bg1)
+  call frontiers#highlight('PurpleSign', s:palette.purple, s:palette.bg1)
 endif
 if s:configuration.diagnostic_text_highlight
-  call frontier#highlight('ErrorText', s:palette.none, s:palette.bg_red, 'undercurl', s:palette.red)
-  call frontier#highlight('WarningText', s:palette.none, s:palette.bg_yellow, 'undercurl', s:palette.yellow)
-  call frontier#highlight('InfoText', s:palette.none, s:palette.bg_blue, 'undercurl', s:palette.blue)
-  call frontier#highlight('HintText', s:palette.none, s:palette.bg_green, 'undercurl', s:palette.green)
+  call frontiers#highlight('ErrorText', s:palette.none, s:palette.bg_red, 'undercurl', s:palette.red)
+  call frontiers#highlight('WarningText', s:palette.none, s:palette.bg_yellow, 'undercurl', s:palette.yellow)
+  call frontiers#highlight('InfoText', s:palette.none, s:palette.bg_blue, 'undercurl', s:palette.blue)
+  call frontiers#highlight('HintText', s:palette.none, s:palette.bg_green, 'undercurl', s:palette.green)
 else
-  call frontier#highlight('ErrorText', s:palette.none, s:palette.none, 'undercurl', s:palette.red)
-  call frontier#highlight('WarningText', s:palette.none, s:palette.none, 'undercurl', s:palette.yellow)
-  call frontier#highlight('InfoText', s:palette.none, s:palette.none, 'undercurl', s:palette.blue)
-  call frontier#highlight('HintText', s:palette.none, s:palette.none, 'undercurl', s:palette.green)
+  call frontiers#highlight('ErrorText', s:palette.none, s:palette.none, 'undercurl', s:palette.red)
+  call frontiers#highlight('WarningText', s:palette.none, s:palette.none, 'undercurl', s:palette.yellow)
+  call frontiers#highlight('InfoText', s:palette.none, s:palette.none, 'undercurl', s:palette.blue)
+  call frontiers#highlight('HintText', s:palette.none, s:palette.none, 'undercurl', s:palette.green)
 endif
 if s:configuration.diagnostic_line_highlight
-  call frontier#highlight('ErrorLine', s:palette.none, s:palette.bg_red)
-  call frontier#highlight('WarningLine', s:palette.none, s:palette.bg_yellow)
-  call frontier#highlight('InfoLine', s:palette.none, s:palette.bg_blue)
-  call frontier#highlight('HintLine', s:palette.none, s:palette.bg_green)
+  call frontiers#highlight('ErrorLine', s:palette.none, s:palette.bg_red)
+  call frontiers#highlight('WarningLine', s:palette.none, s:palette.bg_yellow)
+  call frontiers#highlight('InfoLine', s:palette.none, s:palette.bg_blue)
+  call frontiers#highlight('HintLine', s:palette.none, s:palette.bg_green)
 else
   highlight clear ErrorLine
   highlight clear WarningLine
@@ -393,29 +393,29 @@ elseif s:configuration.diagnostic_virtual_text ==# 'colored'
   highlight! link VirtualTextInfo Blue
   highlight! link VirtualTextHint Green
 else
-  call frontier#highlight('VirtualTextWarning', s:palette.yellow, s:palette.bg_yellow)
-  call frontier#highlight('VirtualTextError', s:palette.red, s:palette.bg_red)
-  call frontier#highlight('VirtualTextInfo', s:palette.blue, s:palette.bg_blue)
-  call frontier#highlight('VirtualTextHint', s:palette.green, s:palette.bg_green)
+  call frontiers#highlight('VirtualTextWarning', s:palette.yellow, s:palette.bg_yellow)
+  call frontiers#highlight('VirtualTextError', s:palette.red, s:palette.bg_red)
+  call frontiers#highlight('VirtualTextInfo', s:palette.blue, s:palette.bg_blue)
+  call frontiers#highlight('VirtualTextHint', s:palette.green, s:palette.bg_green)
 endif
-call frontier#highlight('ErrorFloat', s:palette.red, s:palette.none)
-call frontier#highlight('WarningFloat', s:palette.yellow, s:palette.none)
-call frontier#highlight('InfoFloat', s:palette.blue, s:palette.none)
-call frontier#highlight('HintFloat', s:palette.green, s:palette.none)
+call frontiers#highlight('ErrorFloat', s:palette.red, s:palette.none)
+call frontiers#highlight('WarningFloat', s:palette.yellow, s:palette.none)
+call frontiers#highlight('InfoFloat', s:palette.blue, s:palette.none)
+call frontiers#highlight('HintFloat', s:palette.green, s:palette.none)
 if &diff
-  call frontier#highlight('CurrentWord', s:palette.bg0, s:palette.green)
+  call frontiers#highlight('CurrentWord', s:palette.bg0, s:palette.green)
 elseif s:configuration.current_word ==# 'grey background'
-  call frontier#highlight('CurrentWord', s:palette.none, s:palette.bg2)
+  call frontiers#highlight('CurrentWord', s:palette.none, s:palette.bg2)
 else
-  call frontier#highlight('CurrentWord', s:palette.none, s:palette.none, s:configuration.current_word)
+  call frontiers#highlight('CurrentWord', s:palette.none, s:palette.none, s:configuration.current_word)
 endif
 if s:configuration.inlay_hints_background ==# 'none'
   highlight! link InlayHints LineNr
 else
-  call frontier#highlight('InlayHints', s:palette.grey1, s:palette.bg0_h)
+  call frontiers#highlight('InlayHints', s:palette.grey1, s:palette.bg0_h)
 endif
 " Define a color for each LSP item kind to create highlights for nvim-cmp, aerial.nvim, nvim-navic and coc.nvim
-let g:frontier_lsp_kind_color = [
+let g:frontiers_lsp_kind_color = [
       \ ["Array", "Aqua"],
       \ ["Boolean", "Aqua"],
       \ ["Class", "Red"],
@@ -496,12 +496,12 @@ endif
 " }}}
 " Plugins: {{{
 " nvim-treesitter/nvim-treesitter {{{
-call frontier#highlight('TSStrong', s:palette.none, s:palette.none, 'bold')
-call frontier#highlight('TSEmphasis', s:palette.none, s:palette.none, 'italic')
-call frontier#highlight('TSUnderline', s:palette.none, s:palette.none, 'underline')
-call frontier#highlight('TSNote', s:palette.bg0, s:palette.green, 'bold')
-call frontier#highlight('TSWarning', s:palette.bg0, s:palette.yellow, 'bold')
-call frontier#highlight('TSDanger', s:palette.bg0, s:palette.red, 'bold')
+call frontiers#highlight('TSStrong', s:palette.none, s:palette.none, 'bold')
+call frontiers#highlight('TSEmphasis', s:palette.none, s:palette.none, 'italic')
+call frontiers#highlight('TSUnderline', s:palette.none, s:palette.none, 'underline')
+call frontiers#highlight('TSNote', s:palette.bg0, s:palette.green, 'bold')
+call frontiers#highlight('TSWarning', s:palette.bg0, s:palette.yellow, 'bold')
+call frontiers#highlight('TSDanger', s:palette.bg0, s:palette.red, 'bold')
 highlight! link TSAnnotation Purple
 highlight! link TSAttribute Purple
 highlight! link TSBoolean Purple
@@ -566,7 +566,7 @@ highlight! link TSType YellowItalic
 highlight! link TSTypeBuiltin YellowItalic
 highlight! link TSTypeDefinition YellowItalic
 highlight! link TSTypeQualifier Orange
-call frontier#highlight('TSURI', s:palette.blue, s:palette.none, 'underline')
+call frontiers#highlight('TSURI', s:palette.blue, s:palette.none, 'underline')
 highlight! link TSVariable Fg
 highlight! link TSVariableBuiltin PurpleItalic
 if has('nvim-0.8')
@@ -718,7 +718,7 @@ if has('nvim-0.9')
   highlight! link @lsp.type.type TSType
   highlight! link @lsp.type.typeParameter TSTypeDefinition
   highlight! link @lsp.type.variable TSVariable
-  call frontier#highlight('DiagnosticUnnecessary', s:palette.grey1, s:palette.none)
+  call frontiers#highlight('DiagnosticUnnecessary', s:palette.grey1, s:palette.none)
 endif
 highlight! link TSModuleInfoGood Green
 highlight! link TSModuleInfoBad Red
@@ -727,11 +727,11 @@ highlight! link TSModuleInfoBad Red
 highlight! link CopilotSuggestion Grey
 " }}}
 " neoclide/coc.nvim {{{
-call frontier#highlight('CocHoverRange', s:palette.none, s:palette.none, 'bold,underline')
-call frontier#highlight('CocSearch', s:palette.green, s:palette.none, 'bold')
-call frontier#highlight('CocPumSearch', s:palette.green, s:palette.none, 'bold')
-call frontier#highlight('CocMarkdownHeader', s:palette.orange, s:palette.none, 'bold')
-call frontier#highlight('CocMarkdownLink', s:palette.green, s:palette.none, 'underline')
+call frontiers#highlight('CocHoverRange', s:palette.none, s:palette.none, 'bold,underline')
+call frontiers#highlight('CocSearch', s:palette.green, s:palette.none, 'bold')
+call frontiers#highlight('CocPumSearch', s:palette.green, s:palette.none, 'bold')
+call frontiers#highlight('CocMarkdownHeader', s:palette.orange, s:palette.none, 'bold')
+call frontiers#highlight('CocMarkdownLink', s:palette.green, s:palette.none, 'underline')
 highlight! link CocMarkdownCode Green
 highlight! link CocPumShortcut Grey
 highlight! link CocPumVirtualText Grey
@@ -895,28 +895,28 @@ highlight! link SyntasticWarningLine WarningLine
 " }}}
 " Yggdroot/LeaderF {{{
 if !exists('g:Lf_StlColorscheme')
-  let g:Lf_StlColorscheme = 'frontier'
+  let g:Lf_StlColorscheme = 'frontiers'
 endif
 if !exists('g:Lf_PopupColorscheme')
-  let g:Lf_PopupColorscheme = 'frontier'
+  let g:Lf_PopupColorscheme = 'frontiers'
 endif
-call frontier#highlight('Lf_hl_match', s:palette.green, s:palette.none, 'bold')
-call frontier#highlight('Lf_hl_match0', s:palette.green, s:palette.none, 'bold')
-call frontier#highlight('Lf_hl_match1', s:palette.aqua, s:palette.none, 'bold')
-call frontier#highlight('Lf_hl_match2', s:palette.blue, s:palette.none, 'bold')
-call frontier#highlight('Lf_hl_match3', s:palette.purple, s:palette.none, 'bold')
-call frontier#highlight('Lf_hl_match4', s:palette.orange, s:palette.none, 'bold')
-call frontier#highlight('Lf_hl_matchRefine', s:palette.red, s:palette.none, 'bold')
-call frontier#highlight('Lf_hl_popup_normalMode', s:palette.bg0, s:palette.red, 'bold')
-call frontier#highlight('Lf_hl_popup_inputMode', s:palette.bg0, s:palette.green, 'bold')
-call frontier#highlight('Lf_hl_popup_category', s:palette.fg, s:palette.bg4)
-call frontier#highlight('Lf_hl_popup_nameOnlyMode', s:palette.fg, s:palette.bg3)
-call frontier#highlight('Lf_hl_popup_fullPathMode', s:palette.fg, s:palette.bg3)
-call frontier#highlight('Lf_hl_popup_fuzzyMode', s:palette.fg, s:palette.bg3)
-call frontier#highlight('Lf_hl_popup_regexMode', s:palette.fg, s:palette.bg3)
-call frontier#highlight('Lf_hl_popup_lineInfo', s:palette.yellow, s:palette.bg4)
-call frontier#highlight('Lf_hl_popup_total', s:palette.bg0, s:palette.orange)
-call frontier#highlight('Lf_hl_popup_cursor', s:palette.bg0, s:palette.green)
+call frontiers#highlight('Lf_hl_match', s:palette.green, s:palette.none, 'bold')
+call frontiers#highlight('Lf_hl_match0', s:palette.green, s:palette.none, 'bold')
+call frontiers#highlight('Lf_hl_match1', s:palette.aqua, s:palette.none, 'bold')
+call frontiers#highlight('Lf_hl_match2', s:palette.blue, s:palette.none, 'bold')
+call frontiers#highlight('Lf_hl_match3', s:palette.purple, s:palette.none, 'bold')
+call frontiers#highlight('Lf_hl_match4', s:palette.orange, s:palette.none, 'bold')
+call frontiers#highlight('Lf_hl_matchRefine', s:palette.red, s:palette.none, 'bold')
+call frontiers#highlight('Lf_hl_popup_normalMode', s:palette.bg0, s:palette.red, 'bold')
+call frontiers#highlight('Lf_hl_popup_inputMode', s:palette.bg0, s:palette.green, 'bold')
+call frontiers#highlight('Lf_hl_popup_category', s:palette.fg, s:palette.bg4)
+call frontiers#highlight('Lf_hl_popup_nameOnlyMode', s:palette.fg, s:palette.bg3)
+call frontiers#highlight('Lf_hl_popup_fullPathMode', s:palette.fg, s:palette.bg3)
+call frontiers#highlight('Lf_hl_popup_fuzzyMode', s:palette.fg, s:palette.bg3)
+call frontiers#highlight('Lf_hl_popup_regexMode', s:palette.fg, s:palette.bg3)
+call frontiers#highlight('Lf_hl_popup_lineInfo', s:palette.yellow, s:palette.bg4)
+call frontiers#highlight('Lf_hl_popup_total', s:palette.bg0, s:palette.orange)
+call frontiers#highlight('Lf_hl_popup_cursor', s:palette.bg0, s:palette.green)
 highlight! link Lf_hl_cursorline Fg
 highlight! link Lf_hl_selection DiffAdd
 highlight! link Lf_hl_rgHighlight Visual
@@ -929,19 +929,19 @@ highlight! link Lf_hl_popup_blank Lf_hl_popup_window
 highlight! link Lf_hl_popup_spin Red
 " }}}
 " liuchengxu/vim-clap {{{
-call frontier#highlight('ClapSelected', s:palette.red, s:palette.none, 'bold')
-call frontier#highlight('ClapCurrentSelection', s:palette.none, s:palette.bg1, 'bold')
-call frontier#highlight('ClapSpinner', s:palette.orange, s:palette.bg2, 'bold')
-call frontier#highlight('ClapBlines', s:palette.fg, s:palette.none)
-call frontier#highlight('ClapProviderId', s:palette.fg, s:palette.none, 'bold')
-call frontier#highlight('ClapMatches1', s:palette.red, s:palette.none, 'bold')
-call frontier#highlight('ClapMatches2', s:palette.orange, s:palette.none, 'bold')
-call frontier#highlight('ClapMatches3', s:palette.yellow, s:palette.none, 'bold')
-call frontier#highlight('ClapMatches4', s:palette.aqua, s:palette.none, 'bold')
-call frontier#highlight('ClapMatches5', s:palette.blue, s:palette.none, 'bold')
-call frontier#highlight('ClapMatches6', s:palette.purple, s:palette.none, 'bold')
-call frontier#highlight('ClapFuzzyMatches', s:palette.green, s:palette.none, 'bold')
-call frontier#highlight('ClapNoMatchesFound', s:palette.red, s:palette.none, 'bold')
+call frontiers#highlight('ClapSelected', s:palette.red, s:palette.none, 'bold')
+call frontiers#highlight('ClapCurrentSelection', s:palette.none, s:palette.bg1, 'bold')
+call frontiers#highlight('ClapSpinner', s:palette.orange, s:palette.bg2, 'bold')
+call frontiers#highlight('ClapBlines', s:palette.fg, s:palette.none)
+call frontiers#highlight('ClapProviderId', s:palette.fg, s:palette.none, 'bold')
+call frontiers#highlight('ClapMatches1', s:palette.red, s:palette.none, 'bold')
+call frontiers#highlight('ClapMatches2', s:palette.orange, s:palette.none, 'bold')
+call frontiers#highlight('ClapMatches3', s:palette.yellow, s:palette.none, 'bold')
+call frontiers#highlight('ClapMatches4', s:palette.aqua, s:palette.none, 'bold')
+call frontiers#highlight('ClapMatches5', s:palette.blue, s:palette.none, 'bold')
+call frontiers#highlight('ClapMatches6', s:palette.purple, s:palette.none, 'bold')
+call frontiers#highlight('ClapFuzzyMatches', s:palette.green, s:palette.none, 'bold')
+call frontiers#highlight('ClapNoMatchesFound', s:palette.red, s:palette.none, 'bold')
 highlight! link ClapInput Pmenu
 highlight! link ClapDisplay Pmenu
 highlight! link ClapPreview Pmenu
@@ -981,20 +981,20 @@ let g:fzf_colors = {
       \ }
 " }}}
 " Shougo/denite.nvim {{{
-call frontier#highlight('deniteMatchedChar', s:palette.green, s:palette.none, 'bold')
-call frontier#highlight('deniteMatchedRange', s:palette.green, s:palette.none, 'bold,underline')
-call frontier#highlight('deniteInput', s:palette.green, s:palette.bg3, 'bold')
-call frontier#highlight('deniteStatusLineNumber', s:palette.purple, s:palette.bg3)
-call frontier#highlight('deniteStatusLinePath', s:palette.fg, s:palette.bg3)
+call frontiers#highlight('deniteMatchedChar', s:palette.green, s:palette.none, 'bold')
+call frontiers#highlight('deniteMatchedRange', s:palette.green, s:palette.none, 'bold,underline')
+call frontiers#highlight('deniteInput', s:palette.green, s:palette.bg3, 'bold')
+call frontiers#highlight('deniteStatusLineNumber', s:palette.purple, s:palette.bg3)
+call frontiers#highlight('deniteStatusLinePath', s:palette.fg, s:palette.bg3)
 highlight! link deniteSelectedLin Green
 " }}}
 " kien/ctrlp.vim {{{
-call frontier#highlight('CtrlPMatch', s:palette.green, s:palette.none, 'bold')
-call frontier#highlight('CtrlPPrtBase', s:palette.bg3, s:palette.none)
-call frontier#highlight('CtrlPLinePre', s:palette.bg3, s:palette.none)
-call frontier#highlight('CtrlPMode1', s:palette.blue, s:palette.bg3, 'bold')
-call frontier#highlight('CtrlPMode2', s:palette.bg0, s:palette.blue, 'bold')
-call frontier#highlight('CtrlPStats', s:palette.grey1, s:palette.bg3, 'bold')
+call frontiers#highlight('CtrlPMatch', s:palette.green, s:palette.none, 'bold')
+call frontiers#highlight('CtrlPPrtBase', s:palette.bg3, s:palette.none)
+call frontiers#highlight('CtrlPLinePre', s:palette.bg3, s:palette.none)
+call frontiers#highlight('CtrlPMode1', s:palette.blue, s:palette.bg3, 'bold')
+call frontiers#highlight('CtrlPMode2', s:palette.bg0, s:palette.blue, 'bold')
+call frontiers#highlight('CtrlPStats', s:palette.grey1, s:palette.bg3, 'bold')
 highlight! link CtrlPNoEntries Red
 highlight! link CtrlPPrtCursor Blue
 " }}}
@@ -1023,16 +1023,16 @@ highlight! link SignifyLineChangeDelete DiffChange
 highlight! link SignifyLineDelete DiffDelete
 " }}}
 " andymass/vim-matchup {{{
-call frontier#highlight('MatchParenCur', s:palette.none, s:palette.none, 'bold')
-call frontier#highlight('MatchWord', s:palette.none, s:palette.none, 'underline')
-call frontier#highlight('MatchWordCur', s:palette.none, s:palette.none, 'underline')
+call frontiers#highlight('MatchParenCur', s:palette.none, s:palette.none, 'bold')
+call frontiers#highlight('MatchWord', s:palette.none, s:palette.none, 'underline')
+call frontiers#highlight('MatchWordCur', s:palette.none, s:palette.none, 'underline')
 " }}}
 " easymotion/vim-easymotion {{{
 highlight! link EasyMotionTarget Search
 highlight! link EasyMotionShade Grey
 " }}}
 " justinmk/vim-sneak {{{
-call frontier#highlight('SneakLabelMask', s:palette.orange, s:palette.orange)
+call frontiers#highlight('SneakLabelMask', s:palette.orange, s:palette.orange)
 highlight! link Sneak Search
 highlight! link SneakLabel Search
 highlight! link SneakScope DiffText
@@ -1045,7 +1045,7 @@ highlight! link multiple_cursors_cursor Cursor
 highlight! link multiple_cursors_visual Visual
 " }}}
 " mg979/vim-visual-multi {{{
-call frontier#highlight('VMCursor', s:palette.blue, s:palette.bg_blue)
+call frontiers#highlight('VMCursor', s:palette.blue, s:palette.bg_blue)
 let g:VM_Mono_hl = 'VMCursor'
 let g:VM_Extend_hl = 'Visual'
 let g:VM_Cursor_hl = 'VMCursor'
@@ -1075,8 +1075,8 @@ endif
 " }}}
 " nathanaelkane/vim-indent-guides {{{
 if get(g:, 'indent_guides_auto_colors', 1) == 0
-  call frontier#highlight('IndentGuidesOdd', s:palette.bg0, s:palette.bg1)
-  call frontier#highlight('IndentGuidesEven', s:palette.bg0, s:palette.bg2)
+  call frontiers#highlight('IndentGuidesOdd', s:palette.bg0, s:palette.bg1)
+  call frontiers#highlight('IndentGuidesEven', s:palette.bg0, s:palette.bg2)
 endif
 " }}}
 " thiagoalessio/rainbow_levels.vim {{{
@@ -1133,8 +1133,8 @@ let g:limelight_conceal_ctermfg = s:palette.grey0[1]
 let g:limelight_conceal_guifg = s:palette.grey0[0]
 " }}}
 " unblevable/quick-scope {{{
-call frontier#highlight('QuickScopePrimary', s:palette.aqua, s:palette.none, 'underline')
-call frontier#highlight('QuickScopeSecondary', s:palette.blue, s:palette.none, 'underline')
+call frontiers#highlight('QuickScopePrimary', s:palette.aqua, s:palette.none, 'underline')
+call frontiers#highlight('QuickScopeSecondary', s:palette.blue, s:palette.none, 'underline')
 " }}}
 " APZelos/blamer.nvim {{{
 highlight! link Blamer Grey
@@ -1165,20 +1165,20 @@ highlight! link BookmarkAnnotationLine DiffAdd
 " }}}
 if has('nvim')
 " hrsh7th/nvim-cmp {{{
-call frontier#highlight('CmpItemAbbrMatch', s:palette.green, s:palette.none, 'bold')
-call frontier#highlight('CmpItemAbbrMatchFuzzy', s:palette.green, s:palette.none, 'bold')
+call frontiers#highlight('CmpItemAbbrMatch', s:palette.green, s:palette.none, 'bold')
+call frontiers#highlight('CmpItemAbbrMatchFuzzy', s:palette.green, s:palette.none, 'bold')
 highlight! link CmpItemAbbr Fg
 highlight! link CmpItemAbbrDeprecated Grey
 highlight! link CmpItemMenu Fg
 highlight! link CmpItemKind Yellow
-for kind in g:frontier_lsp_kind_color
+for kind in g:frontiers_lsp_kind_color
   execute "highlight! link CmpItemKind" . kind[0] . " " . kind[1]
 endfor
 " }}}
 " SmiteshP/nvim-navic {{{
 highlight! link NavicText Fg
 highlight! link NavicSeparator Grey
-for kind in g:frontier_lsp_kind_color
+for kind in g:frontiers_lsp_kind_color
   execute "highlight! link NavicIcons" . kind[0] . " " . kind[1]
 endfor
 " }}}
@@ -1188,7 +1188,7 @@ highlight! link TroubleSource Grey
 highlight! link TroubleCode Grey
 " }}}
 " nvim-telescope/telescope.nvim {{{
-call frontier#highlight('TelescopeMatching', s:palette.green, s:palette.none, 'bold')
+call frontiers#highlight('TelescopeMatching', s:palette.green, s:palette.none, 'bold')
 highlight! link TelescopeBorder Grey
 highlight! link TelescopePromptPrefix Orange
 highlight! link TelescopeSelection DiffAdd
@@ -1206,15 +1206,15 @@ highlight! link GitSignsDeleteLn DiffDelete
 highlight! link GitSignsCurrentLineBlame Grey
 " }}}
 " phaazon/hop.nvim {{{
-call frontier#highlight('HopNextKey', s:palette.orange, s:palette.none, 'bold')
-call frontier#highlight('HopNextKey1', s:palette.green, s:palette.none, 'bold')
+call frontiers#highlight('HopNextKey', s:palette.orange, s:palette.none, 'bold')
+call frontiers#highlight('HopNextKey1', s:palette.green, s:palette.none, 'bold')
 highlight! link HopNextKey2 Green
 highlight! link HopUnmatched Grey
 " }}}
 " lukas-reineke/indent-blankline.nvim {{{
-call frontier#highlight('IblScope', s:palette.grey1, s:palette.none, 'nocombine')
-call frontier#highlight('IblIndent', s:palette.bg4, s:palette.none, 'nocombine')
-call frontier#highlight('IndentBlanklineContextStart', s:palette.none, s:palette.bg2)
+call frontiers#highlight('IblScope', s:palette.grey1, s:palette.none, 'nocombine')
+call frontiers#highlight('IblIndent', s:palette.bg4, s:palette.none, 'nocombine')
+call frontiers#highlight('IndentBlanklineContextStart', s:palette.none, s:palette.bg2)
 highlight! link IndentBlanklineContextChar IblScope
 highlight! link IndentBlanklineChar IblIndent
 highlight! link IndentBlanklineSpaceChar IndentBlanklineChar
@@ -1230,26 +1230,26 @@ highlight! link rainbowcol6 Blue
 highlight! link rainbowcol7 Purple
 " }}}
 " romgrk/barbar.nvim {{{
-call frontier#highlight('BufferCurrent', s:palette.fg, s:palette.bg0)
-call frontier#highlight('BufferCurrentIndex', s:palette.fg, s:palette.bg0)
-call frontier#highlight('BufferCurrentMod', s:palette.blue, s:palette.bg0)
-call frontier#highlight('BufferCurrentSign', s:palette.statusline1, s:palette.bg0)
-call frontier#highlight('BufferCurrentTarget', s:palette.red, s:palette.bg0, 'bold')
-call frontier#highlight('BufferVisible', s:palette.fg, s:palette.bg0_h)
-call frontier#highlight('BufferVisibleIndex', s:palette.fg, s:palette.bg0_h)
-call frontier#highlight('BufferVisibleMod', s:palette.blue, s:palette.bg0_h)
-call frontier#highlight('BufferVisibleSign', s:palette.statusline1, s:palette.bg0_h)
-call frontier#highlight('BufferVisibleTarget', s:palette.yellow, s:palette.bg0_h, 'bold')
-call frontier#highlight('BufferInactive', s:palette.grey1, s:palette.bg0_h)
-call frontier#highlight('BufferInactiveIndex', s:palette.grey1, s:palette.bg0_h)
-call frontier#highlight('BufferInactiveMod', s:palette.grey1, s:palette.bg0_h)
-call frontier#highlight('BufferInactiveSign', s:palette.grey0, s:palette.bg0_h)
-call frontier#highlight('BufferInactiveTarget', s:palette.yellow, s:palette.bg0_h, 'bold')
-call frontier#highlight('BufferTabpages', s:palette.grey1, s:palette.bg0_h, 'bold')
-call frontier#highlight('BufferTabpageFill', s:palette.bg0_h, s:palette.bg0_h)
+call frontiers#highlight('BufferCurrent', s:palette.fg, s:palette.bg0)
+call frontiers#highlight('BufferCurrentIndex', s:palette.fg, s:palette.bg0)
+call frontiers#highlight('BufferCurrentMod', s:palette.blue, s:palette.bg0)
+call frontiers#highlight('BufferCurrentSign', s:palette.statusline1, s:palette.bg0)
+call frontiers#highlight('BufferCurrentTarget', s:palette.red, s:palette.bg0, 'bold')
+call frontiers#highlight('BufferVisible', s:palette.fg, s:palette.bg0_h)
+call frontiers#highlight('BufferVisibleIndex', s:palette.fg, s:palette.bg0_h)
+call frontiers#highlight('BufferVisibleMod', s:palette.blue, s:palette.bg0_h)
+call frontiers#highlight('BufferVisibleSign', s:palette.statusline1, s:palette.bg0_h)
+call frontiers#highlight('BufferVisibleTarget', s:palette.yellow, s:palette.bg0_h, 'bold')
+call frontiers#highlight('BufferInactive', s:palette.grey1, s:palette.bg0_h)
+call frontiers#highlight('BufferInactiveIndex', s:palette.grey1, s:palette.bg0_h)
+call frontiers#highlight('BufferInactiveMod', s:palette.grey1, s:palette.bg0_h)
+call frontiers#highlight('BufferInactiveSign', s:palette.grey0, s:palette.bg0_h)
+call frontiers#highlight('BufferInactiveTarget', s:palette.yellow, s:palette.bg0_h, 'bold')
+call frontiers#highlight('BufferTabpages', s:palette.grey1, s:palette.bg0_h, 'bold')
+call frontiers#highlight('BufferTabpageFill', s:palette.bg0_h, s:palette.bg0_h)
 " }}}
 " rcarriga/nvim-notify {{{
-call frontier#highlight('NotifyBackground', s:palette.none, s:palette.bg0)
+call frontiers#highlight('NotifyBackground', s:palette.none, s:palette.bg0)
 highlight! link NotifyERRORBorder Red
 highlight! link NotifyWARNBorder Yellow
 highlight! link NotifyINFOBorder Green
@@ -1267,8 +1267,8 @@ highlight! link NotifyDEBUGTitle Grey
 highlight! link NotifyTRACETitle Purple
 " }}}
 " rcarriga/nvim-dap-ui {{{
-call frontier#highlight('DapUIModifiedValue', s:palette.blue, s:palette.none, 'bold')
-call frontier#highlight('DapUIBreakpointsCurrentLine', s:palette.blue, s:palette.none, 'bold')
+call frontiers#highlight('DapUIModifiedValue', s:palette.blue, s:palette.none, 'bold')
+call frontiers#highlight('DapUIBreakpointsCurrentLine', s:palette.blue, s:palette.none, 'bold')
 highlight! link DapUIScope Blue
 highlight! link DapUIType Purple
 highlight! link DapUIDecoration Blue
@@ -1284,10 +1284,10 @@ highlight! link DapUIBreakpointsPath Blue
 highlight! link DapUIBreakpointsInfo Green
 " }}}
 " glepnir/lspsaga.nvim {{{
-call frontier#highlight('LspFloatWinBorder', s:palette.bg0, s:palette.bg0)
-call frontier#highlight('LspSagaDiagnosticHeader', s:palette.orange, s:palette.none, 'bold')
-call frontier#highlight('LspSagaCodeActionTitle', s:palette.purple, s:palette.none, 'bold')
-call frontier#highlight('DefinitionPreviewTitle', s:palette.blue, s:palette.none, 'bold')
+call frontiers#highlight('LspFloatWinBorder', s:palette.bg0, s:palette.bg0)
+call frontiers#highlight('LspSagaDiagnosticHeader', s:palette.orange, s:palette.none, 'bold')
+call frontiers#highlight('LspSagaCodeActionTitle', s:palette.purple, s:palette.none, 'bold')
+call frontiers#highlight('DefinitionPreviewTitle', s:palette.blue, s:palette.none, 'bold')
 highlight! link LspSagaDiagnosticError Red
 highlight! link LspSagaDiagnosticWarn Yellow
 highlight! link LspSagaDiagnosticInfo Blue
@@ -1320,52 +1320,52 @@ highlight! link DefinitionCount Grey
 highlight! link TargetFileName Grey
 " }}}
 " b0o/incline.nvim {{{
-call frontier#highlight('InclineNormalNC', s:palette.grey1, s:palette.bg2)
+call frontiers#highlight('InclineNormalNC', s:palette.grey1, s:palette.bg2)
 " }}}
 " echasnovski/mini.nvim {{{
-call frontier#highlight('MiniAnimateCursor', s:palette.none, s:palette.none, 'reverse,nocombine')
+call frontiers#highlight('MiniAnimateCursor', s:palette.none, s:palette.none, 'reverse,nocombine')
 if s:configuration.float_style ==# 'dim'
-  call frontier#highlight('MiniFilesTitleFocused', s:palette.green, s:palette.bg0_h, 'bold')
+  call frontiers#highlight('MiniFilesTitleFocused', s:palette.green, s:palette.bg0_h, 'bold')
 else
-  call frontier#highlight('MiniFilesTitleFocused', s:palette.green, s:palette.bg2, 'bold')
+  call frontiers#highlight('MiniFilesTitleFocused', s:palette.green, s:palette.bg2, 'bold')
 endif
-call frontier#highlight('MiniHipatternsFixme', s:palette.bg0, s:palette.red, 'bold')
-call frontier#highlight('MiniHipatternsHack', s:palette.bg0, s:palette.yellow, 'bold')
-call frontier#highlight('MiniHipatternsNote', s:palette.bg0, s:palette.blue, 'bold')
-call frontier#highlight('MiniHipatternsTodo', s:palette.bg0, s:palette.green, 'bold')
-call frontier#highlight('MiniIconsAzure', s:palette.blue, s:palette.none)
-call frontier#highlight('MiniIconsBlue', s:palette.blue, s:palette.none)
-call frontier#highlight('MiniIconsCyan', s:palette.aqua, s:palette.none)
-call frontier#highlight('MiniIconsGreen', s:palette.green, s:palette.none)
-call frontier#highlight('MiniIconsGrey', s:palette.grey2, s:palette.none)
-call frontier#highlight('MiniIconsOrange', s:palette.orange, s:palette.none)
-call frontier#highlight('MiniIconsPurple', s:palette.purple, s:palette.none)
-call frontier#highlight('MiniIconsRed', s:palette.red, s:palette.none)
-call frontier#highlight('MiniIconsYellow', s:palette.yellow, s:palette.none)
-call frontier#highlight('MiniIndentscopePrefix', s:palette.none, s:palette.none, 'nocombine')
-call frontier#highlight('MiniJump2dSpot', s:palette.orange, s:palette.none, 'bold,nocombine')
-call frontier#highlight('MiniJump2dSpotAhead', s:palette.aqua, s:palette.none, 'nocombine')
-call frontier#highlight('MiniJump2dSpotUnique', s:palette.yellow, s:palette.none, 'bold,nocombine')
-call frontier#highlight('MiniStarterCurrent', s:palette.none, s:palette.none, 'nocombine')
-call frontier#highlight('MiniStatuslineDevinfo', s:palette.grey1, s:palette.bg1)
-call frontier#highlight('MiniStatuslineFileinfo', s:palette.grey1, s:palette.bg1)
-call frontier#highlight('MiniStatuslineModeCommand', s:palette.bg0, s:palette.aqua, 'bold')
-call frontier#highlight('MiniStatuslineModeInsert', s:palette.bg0, s:palette.statusline2, 'bold')
-call frontier#highlight('MiniStatuslineModeNormal', s:palette.bg0, s:palette.statusline1, 'bold')
-call frontier#highlight('MiniStatuslineModeOther', s:palette.bg0, s:palette.purple, 'bold')
-call frontier#highlight('MiniStatuslineModeReplace', s:palette.bg0, s:palette.orange, 'bold')
-call frontier#highlight('MiniStatuslineModeVisual', s:palette.bg0, s:palette.statusline3, 'bold')
-call frontier#highlight('MiniTablineCurrent', s:palette.fg, s:palette.bg4)
-call frontier#highlight('MiniTablineHidden', s:palette.grey1, s:palette.bg2)
-call frontier#highlight('MiniTablineModifiedCurrent', s:palette.blue, s:palette.bg4)
-call frontier#highlight('MiniTablineModifiedHidden', s:palette.grey1, s:palette.bg2)
-call frontier#highlight('MiniTablineModifiedVisible', s:palette.blue, s:palette.bg2)
-call frontier#highlight('MiniTablineTabpagesection', s:palette.bg0, s:palette.statusline1, 'bold')
-call frontier#highlight('MiniTablineVisible', s:palette.fg, s:palette.bg2)
-call frontier#highlight('MiniTestEmphasis', s:palette.none, s:palette.none, 'bold')
-call frontier#highlight('MiniTestFail', s:palette.red, s:palette.none, 'bold')
-call frontier#highlight('MiniTestPass', s:palette.green, s:palette.none, 'bold')
-call frontier#highlight('MiniTrailspace', s:palette.none, s:palette.red)
+call frontiers#highlight('MiniHipatternsFixme', s:palette.bg0, s:palette.red, 'bold')
+call frontiers#highlight('MiniHipatternsHack', s:palette.bg0, s:palette.yellow, 'bold')
+call frontiers#highlight('MiniHipatternsNote', s:palette.bg0, s:palette.blue, 'bold')
+call frontiers#highlight('MiniHipatternsTodo', s:palette.bg0, s:palette.green, 'bold')
+call frontiers#highlight('MiniIconsAzure', s:palette.blue, s:palette.none)
+call frontiers#highlight('MiniIconsBlue', s:palette.blue, s:palette.none)
+call frontiers#highlight('MiniIconsCyan', s:palette.aqua, s:palette.none)
+call frontiers#highlight('MiniIconsGreen', s:palette.green, s:palette.none)
+call frontiers#highlight('MiniIconsGrey', s:palette.grey2, s:palette.none)
+call frontiers#highlight('MiniIconsOrange', s:palette.orange, s:palette.none)
+call frontiers#highlight('MiniIconsPurple', s:palette.purple, s:palette.none)
+call frontiers#highlight('MiniIconsRed', s:palette.red, s:palette.none)
+call frontiers#highlight('MiniIconsYellow', s:palette.yellow, s:palette.none)
+call frontiers#highlight('MiniIndentscopePrefix', s:palette.none, s:palette.none, 'nocombine')
+call frontiers#highlight('MiniJump2dSpot', s:palette.orange, s:palette.none, 'bold,nocombine')
+call frontiers#highlight('MiniJump2dSpotAhead', s:palette.aqua, s:palette.none, 'nocombine')
+call frontiers#highlight('MiniJump2dSpotUnique', s:palette.yellow, s:palette.none, 'bold,nocombine')
+call frontiers#highlight('MiniStarterCurrent', s:palette.none, s:palette.none, 'nocombine')
+call frontiers#highlight('MiniStatuslineDevinfo', s:palette.grey1, s:palette.bg1)
+call frontiers#highlight('MiniStatuslineFileinfo', s:palette.grey1, s:palette.bg1)
+call frontiers#highlight('MiniStatuslineModeCommand', s:palette.bg0, s:palette.aqua, 'bold')
+call frontiers#highlight('MiniStatuslineModeInsert', s:palette.bg0, s:palette.statusline2, 'bold')
+call frontiers#highlight('MiniStatuslineModeNormal', s:palette.bg0, s:palette.statusline1, 'bold')
+call frontiers#highlight('MiniStatuslineModeOther', s:palette.bg0, s:palette.purple, 'bold')
+call frontiers#highlight('MiniStatuslineModeReplace', s:palette.bg0, s:palette.orange, 'bold')
+call frontiers#highlight('MiniStatuslineModeVisual', s:palette.bg0, s:palette.statusline3, 'bold')
+call frontiers#highlight('MiniTablineCurrent', s:palette.fg, s:palette.bg4)
+call frontiers#highlight('MiniTablineHidden', s:palette.grey1, s:palette.bg2)
+call frontiers#highlight('MiniTablineModifiedCurrent', s:palette.blue, s:palette.bg4)
+call frontiers#highlight('MiniTablineModifiedHidden', s:palette.grey1, s:palette.bg2)
+call frontiers#highlight('MiniTablineModifiedVisible', s:palette.blue, s:palette.bg2)
+call frontiers#highlight('MiniTablineTabpagesection', s:palette.bg0, s:palette.statusline1, 'bold')
+call frontiers#highlight('MiniTablineVisible', s:palette.fg, s:palette.bg2)
+call frontiers#highlight('MiniTestEmphasis', s:palette.none, s:palette.none, 'bold')
+call frontiers#highlight('MiniTestFail', s:palette.red, s:palette.none, 'bold')
+call frontiers#highlight('MiniTestPass', s:palette.green, s:palette.none, 'bold')
+call frontiers#highlight('MiniTrailspace', s:palette.none, s:palette.red)
 highlight! link MiniAnimateNormalFloat NormalFloat
 highlight! link MiniClueBorder FloatBorder
 highlight! link MiniClueDescGroup DiagnosticFloatingWarn
@@ -1439,11 +1439,11 @@ highlight! link MiniSurround IncSearch
 highlight! link MiniTablineFill TabLineFill
 " }}}
 " ggandor/lightspeed.nvim {{{
-call frontier#highlight('LightspeedLabel', s:palette.red, s:palette.none, 'bold,underline')
-call frontier#highlight('LightspeedLabelDistant', s:palette.blue, s:palette.none, 'bold,underline')
-call frontier#highlight('LightspeedShortcut', s:palette.bg0, s:palette.red, 'bold')
-call frontier#highlight('LightspeedUnlabeledMatch', s:palette.fg, s:palette.none, 'bold')
-call frontier#highlight('LightspeedPendingOpArea', s:palette.bg0, s:palette.green)
+call frontiers#highlight('LightspeedLabel', s:palette.red, s:palette.none, 'bold,underline')
+call frontiers#highlight('LightspeedLabelDistant', s:palette.blue, s:palette.none, 'bold,underline')
+call frontiers#highlight('LightspeedShortcut', s:palette.bg0, s:palette.red, 'bold')
+call frontiers#highlight('LightspeedUnlabeledMatch', s:palette.fg, s:palette.none, 'bold')
+call frontiers#highlight('LightspeedPendingOpArea', s:palette.bg0, s:palette.green)
 highlight! link LightspeedMaskedChar Purple
 highlight! link LightspeedGreyWash Grey
 " }}}
@@ -1469,27 +1469,27 @@ highlight! link diffIndexLine Purple
 " }}}
 " }}}
 " Generate the `after/syntax` directory based on the comment tags in this file.
-" For example, the content between `syn_begin: sh/zsh` and `syn_end` will be placed in `after/syntax/sh/frontier.vim` and `after/syntax/zsh/frontier.vim`.
-if frontier#syn_exists(s:path) " If the syntax files exist.
+" For example, the content between `syn_begin: sh/zsh` and `syn_end` will be placed in `after/syntax/sh/frontiers.vim` and `after/syntax/zsh/frontiers.vim`.
+if frontiers#syn_exists(s:path) " If the syntax files exist.
   if s:configuration.better_performance
-    if !frontier#syn_newest(s:path, s:last_modified) " Regenerate if it's not up to date.
-      call frontier#syn_clean(s:path, 0)
-      call frontier#syn_gen(s:path, s:last_modified, 'update')
+    if !frontiers#syn_newest(s:path, s:last_modified) " Regenerate if it's not up to date.
+      call frontiers#syn_clean(s:path, 0)
+      call frontiers#syn_gen(s:path, s:last_modified, 'update')
     endif
     finish
   else
-    call frontier#syn_clean(s:path, 1)
+    call frontiers#syn_clean(s:path, 1)
   endif
 else
   if s:configuration.better_performance
-    call frontier#syn_gen(s:path, s:last_modified, 'generate')
+    call frontiers#syn_gen(s:path, s:last_modified, 'generate')
     finish
   endif
 endif
 " syn_begin: vim-plug {{{
 " https://github.com/junegunn/vim-plug
-call frontier#highlight('plug1', s:palette.orange, s:palette.none, 'bold')
-call frontier#highlight('plugNumber', s:palette.yellow, s:palette.none, 'bold')
+call frontiers#highlight('plug1', s:palette.orange, s:palette.none, 'bold')
+call frontiers#highlight('plugNumber', s:palette.yellow, s:palette.none, 'bold')
 highlight! link plug2 Green
 highlight! link plugBracket Grey
 highlight! link plugName Aqua
@@ -1527,7 +1527,7 @@ highlight! link packerTimeLow Green
 " https://github.com/neoclide/coc.nvim
 highlight! link CocTreeOpenClose Aqua
 highlight! link CocTreeDescription Grey
-for kind in g:frontier_lsp_kind_color
+for kind in g:frontiers_lsp_kind_color
   execute "highlight! link CocSymbol" . kind[0] . " " . kind[1]
 endfor
 " syn_end }}}
@@ -1606,7 +1606,7 @@ highlight! link FocusedSymbol NormalFloat
 " https://github.com/stevearc/aerial.nvim
 highlight! link AerialLine CursorLine
 highlight! link AerialGuide LineNr
-for kind in g:frontier_lsp_kind_color
+for kind in g:frontiers_lsp_kind_color
   execute "highlight! link Aerial" . kind[0] . "Icon " . kind[1]
 endfor
 " syn_end }}}
@@ -1635,10 +1635,10 @@ highlight! link DirvishArg Yellow
 " syn_begin: NvimTree {{{
 " https://github.com/kyazdani42/nvim-tree.lua
 if !s:configuration.transparent_background
-  call frontier#highlight('NvimTreeNormal', s:palette.fg, s:palette.bg0_h)
-  call frontier#highlight('NvimTreeEndOfBuffer', s:palette.bg0_h, s:palette.bg0_h)
-  call frontier#highlight('NvimTreeVertSplit', s:palette.bg0, s:palette.bg0)
-  call frontier#highlight('NvimTreeCursorLine', s:palette.none, s:palette.bg0)
+  call frontiers#highlight('NvimTreeNormal', s:palette.fg, s:palette.bg0_h)
+  call frontiers#highlight('NvimTreeEndOfBuffer', s:palette.bg0_h, s:palette.bg0_h)
+  call frontiers#highlight('NvimTreeVertSplit', s:palette.bg0, s:palette.bg0)
+  call frontiers#highlight('NvimTreeCursorLine', s:palette.none, s:palette.bg0)
 endif
 highlight! link NvimTreeSymlink Fg
 highlight! link NvimTreeFolderName Green
@@ -1679,9 +1679,9 @@ highlight! link FernWindowSelectStatusLine TabLine
 " syn_begin: neo-tree {{{
 " https://github.com/nvim-neo-tree/neo-tree.nvim
 if !s:configuration.transparent_background
-  call frontier#highlight('NeoTreeNormal', s:palette.fg, s:palette.bg0_h)
-  call frontier#highlight('NeoTreeEndOfBuffer', s:palette.bg0_h, s:palette.bg0_h)
-  call frontier#highlight('NeoTreeVertSplit', s:palette.bg0, s:palette.bg0)
+  call frontiers#highlight('NeoTreeNormal', s:palette.fg, s:palette.bg0_h)
+  call frontiers#highlight('NeoTreeEndOfBuffer', s:palette.bg0_h, s:palette.bg0_h)
+  call frontiers#highlight('NeoTreeVertSplit', s:palette.bg0, s:palette.bg0)
 endif
 highlight! link NeoTreeDirectoryIcon Orange
 highlight! link NeoTreeGitAdded Green
@@ -1700,19 +1700,19 @@ highlight! link NeoTreeRootName Title
 " syn_end }}}
 " syn_begin: octo {{{
 " https://github.com/pwntester/octo.nvim
-call frontier#highlight('OctoViewer', s:palette.bg0, s:palette.blue)
-call frontier#highlight('OctoGreenFloat', s:palette.green, s:palette.bg2)
-call frontier#highlight('OctoRedFloat', s:palette.red, s:palette.bg2)
-call frontier#highlight('OctoPurpleFloat', s:palette.purple, s:palette.bg2)
-call frontier#highlight('OctoYellowFloat', s:palette.yellow, s:palette.bg2)
-call frontier#highlight('OctoBlueFloat', s:palette.blue, s:palette.bg2)
-call frontier#highlight('OctoGreyFloat', s:palette.grey1, s:palette.bg2)
-call frontier#highlight('OctoBubbleGreen', s:palette.bg0, s:palette.green)
-call frontier#highlight('OctoBubbleRed', s:palette.bg0, s:palette.red)
-call frontier#highlight('OctoBubblePurple', s:palette.bg0, s:palette.purple)
-call frontier#highlight('OctoBubbleYellow', s:palette.bg0, s:palette.yellow)
-call frontier#highlight('OctoBubbleBlue', s:palette.bg0, s:palette.blue)
-call frontier#highlight('OctoBubbleGrey', s:palette.bg0, s:palette.grey1)
+call frontiers#highlight('OctoViewer', s:palette.bg0, s:palette.blue)
+call frontiers#highlight('OctoGreenFloat', s:palette.green, s:palette.bg2)
+call frontiers#highlight('OctoRedFloat', s:palette.red, s:palette.bg2)
+call frontiers#highlight('OctoPurpleFloat', s:palette.purple, s:palette.bg2)
+call frontiers#highlight('OctoYellowFloat', s:palette.yellow, s:palette.bg2)
+call frontiers#highlight('OctoBlueFloat', s:palette.blue, s:palette.bg2)
+call frontiers#highlight('OctoGreyFloat', s:palette.grey1, s:palette.bg2)
+call frontiers#highlight('OctoBubbleGreen', s:palette.bg0, s:palette.green)
+call frontiers#highlight('OctoBubbleRed', s:palette.bg0, s:palette.red)
+call frontiers#highlight('OctoBubblePurple', s:palette.bg0, s:palette.purple)
+call frontiers#highlight('OctoBubbleYellow', s:palette.bg0, s:palette.yellow)
+call frontiers#highlight('OctoBubbleBlue', s:palette.bg0, s:palette.blue)
+call frontiers#highlight('OctoBubbleGrey', s:palette.bg0, s:palette.grey1)
 highlight! link OctoGreen Green
 highlight! link OctoRed Red
 highlight! link OctoPurple Purple
@@ -1763,7 +1763,7 @@ highlight! link QuickmenuHeader Orange
 " syn_end }}}
 " syn_begin: undotree {{{
 " https://github.com/mbbill/undotree
-call frontier#highlight('UndotreeSavedBig', s:palette.purple, s:palette.none, 'bold')
+call frontiers#highlight('UndotreeSavedBig', s:palette.purple, s:palette.none, 'bold')
 highlight! link UndotreeNode Orange
 highlight! link UndotreeNodeCurrent Red
 highlight! link UndotreeSeq Green
@@ -1798,15 +1798,15 @@ highlight! link DashboardFooter Orange
 " syn_end }}}
 " syn_begin: markdown {{{
 " builtin: {{{
-call frontier#highlight('markdownH1', s:palette.red, s:palette.none, 'bold')
-call frontier#highlight('markdownH2', s:palette.orange, s:palette.none, 'bold')
-call frontier#highlight('markdownH3', s:palette.yellow, s:palette.none, 'bold')
-call frontier#highlight('markdownH4', s:palette.green, s:palette.none, 'bold')
-call frontier#highlight('markdownH5', s:palette.blue, s:palette.none, 'bold')
-call frontier#highlight('markdownH6', s:palette.purple, s:palette.none, 'bold')
-call frontier#highlight('markdownItalic', s:palette.none, s:palette.none, 'italic')
-call frontier#highlight('markdownBold', s:palette.none, s:palette.none, 'bold')
-call frontier#highlight('markdownItalicDelimiter', s:palette.grey1, s:palette.none, 'italic')
+call frontiers#highlight('markdownH1', s:palette.red, s:palette.none, 'bold')
+call frontiers#highlight('markdownH2', s:palette.orange, s:palette.none, 'bold')
+call frontiers#highlight('markdownH3', s:palette.yellow, s:palette.none, 'bold')
+call frontiers#highlight('markdownH4', s:palette.green, s:palette.none, 'bold')
+call frontiers#highlight('markdownH5', s:palette.blue, s:palette.none, 'bold')
+call frontiers#highlight('markdownH6', s:palette.purple, s:palette.none, 'bold')
+call frontiers#highlight('markdownItalic', s:palette.none, s:palette.none, 'italic')
+call frontiers#highlight('markdownBold', s:palette.none, s:palette.none, 'bold')
+call frontiers#highlight('markdownItalicDelimiter', s:palette.grey1, s:palette.none, 'italic')
 highlight! link markdownUrl TSURI
 highlight! link markdownCode Green
 highlight! link markdownCodeBlock Aqua
@@ -1827,9 +1827,9 @@ highlight! link markdownBoldDelimiter Grey
 highlight! link markdownId Yellow
 " }}}
 " vim-markdown: https://github.com/gabrielelana/vim-markdown {{{
-call frontier#highlight('mkdURL', s:palette.blue, s:palette.none, 'underline')
-call frontier#highlight('mkdInlineURL', s:palette.purple, s:palette.none, 'underline')
-call frontier#highlight('mkdItalic', s:palette.grey1, s:palette.none, 'italic')
+call frontiers#highlight('mkdURL', s:palette.blue, s:palette.none, 'underline')
+call frontiers#highlight('mkdInlineURL', s:palette.purple, s:palette.none, 'underline')
+call frontiers#highlight('mkdItalic', s:palette.grey1, s:palette.none, 'italic')
 highlight! link mkdCodeDelimiter Aqua
 highlight! link mkdBold Grey
 highlight! link mkdLink Purple
@@ -1854,23 +1854,23 @@ if has('nvim-0.8')
   highlight! link @markup.heading.5.marker.markdown @conceal
   highlight! link @markup.heading.6.marker.markdown @conceal
   if !has('nvim-0.10')
-    call frontier#highlight('@markup.italic', s:palette.none, s:palette.none, 'italic')
-    call frontier#highlight('@markup.strikethrough', s:palette.none, s:palette.none, 'strikethrough')
+    call frontiers#highlight('@markup.italic', s:palette.none, s:palette.none, 'italic')
+    call frontiers#highlight('@markup.strikethrough', s:palette.none, s:palette.none, 'strikethrough')
   endif
 endif
 " }}}
 " syn_end }}}
 " syn_begin: vimwiki {{{
-call frontier#highlight('VimwikiHeader1', s:palette.red, s:palette.none, 'bold')
-call frontier#highlight('VimwikiHeader2', s:palette.orange, s:palette.none, 'bold')
-call frontier#highlight('VimwikiHeader3', s:palette.yellow, s:palette.none, 'bold')
-call frontier#highlight('VimwikiHeader4', s:palette.green, s:palette.none, 'bold')
-call frontier#highlight('VimwikiHeader5', s:palette.blue, s:palette.none, 'bold')
-call frontier#highlight('VimwikiHeader6', s:palette.purple, s:palette.none, 'bold')
-call frontier#highlight('VimwikiLink', s:palette.blue, s:palette.none, 'underline')
-call frontier#highlight('VimwikiItalic', s:palette.none, s:palette.none, 'italic')
-call frontier#highlight('VimwikiBold', s:palette.none, s:palette.none, 'bold')
-call frontier#highlight('VimwikiUnderline', s:palette.none, s:palette.none, 'underline')
+call frontiers#highlight('VimwikiHeader1', s:palette.red, s:palette.none, 'bold')
+call frontiers#highlight('VimwikiHeader2', s:palette.orange, s:palette.none, 'bold')
+call frontiers#highlight('VimwikiHeader3', s:palette.yellow, s:palette.none, 'bold')
+call frontiers#highlight('VimwikiHeader4', s:palette.green, s:palette.none, 'bold')
+call frontiers#highlight('VimwikiHeader5', s:palette.blue, s:palette.none, 'bold')
+call frontiers#highlight('VimwikiHeader6', s:palette.purple, s:palette.none, 'bold')
+call frontiers#highlight('VimwikiLink', s:palette.blue, s:palette.none, 'underline')
+call frontiers#highlight('VimwikiItalic', s:palette.none, s:palette.none, 'italic')
+call frontiers#highlight('VimwikiBold', s:palette.none, s:palette.none, 'bold')
+call frontiers#highlight('VimwikiUnderline', s:palette.none, s:palette.none, 'underline')
 highlight! link VimwikiList Red
 highlight! link VimwikiTag Aqua
 highlight! link VimwikiCode Green
@@ -1883,7 +1883,7 @@ highlight! link VimwikiNoExistsLink Red
 " syn_end }}}
 " syn_begin: rst {{{
 " builtin: https://github.com/marshallward/vim-restructuredtext {{{
-call frontier#highlight('rstStandaloneHyperlink', s:palette.purple, s:palette.none, 'underline')
+call frontiers#highlight('rstStandaloneHyperlink', s:palette.purple, s:palette.none, 'underline')
 highlight! link rstSubstitutionReference Blue
 highlight! link rstInterpretedTextOrHyperlinkReference Aqua
 highlight! link rstTableLines Grey
@@ -1921,20 +1921,20 @@ highlight! link texAuthorArg BlueItalic
 " syn_end }}}
 " syn_begin: html/markdown/javascriptreact/typescriptreact {{{
 " builtin: https://notabug.org/jorgesumle/vim-html-syntax {{{
-call frontier#highlight('htmlH1', s:palette.red, s:palette.none, 'bold')
-call frontier#highlight('htmlH2', s:palette.orange, s:palette.none, 'bold')
-call frontier#highlight('htmlH3', s:palette.yellow, s:palette.none, 'bold')
-call frontier#highlight('htmlH4', s:palette.green, s:palette.none, 'bold')
-call frontier#highlight('htmlH5', s:palette.blue, s:palette.none, 'bold')
-call frontier#highlight('htmlH6', s:palette.purple, s:palette.none, 'bold')
-call frontier#highlight('htmlLink', s:palette.none, s:palette.none, 'underline')
-call frontier#highlight('htmlBold', s:palette.none, s:palette.none, 'bold')
-call frontier#highlight('htmlBoldUnderline', s:palette.none, s:palette.none, 'bold,underline')
-call frontier#highlight('htmlBoldItalic', s:palette.none, s:palette.none, 'bold,italic')
-call frontier#highlight('htmlBoldUnderlineItalic', s:palette.none, s:palette.none, 'bold,underline,italic')
-call frontier#highlight('htmlUnderline', s:palette.none, s:palette.none, 'underline')
-call frontier#highlight('htmlUnderlineItalic', s:palette.none, s:palette.none, 'underline,italic')
-call frontier#highlight('htmlItalic', s:palette.none, s:palette.none, 'italic')
+call frontiers#highlight('htmlH1', s:palette.red, s:palette.none, 'bold')
+call frontiers#highlight('htmlH2', s:palette.orange, s:palette.none, 'bold')
+call frontiers#highlight('htmlH3', s:palette.yellow, s:palette.none, 'bold')
+call frontiers#highlight('htmlH4', s:palette.green, s:palette.none, 'bold')
+call frontiers#highlight('htmlH5', s:palette.blue, s:palette.none, 'bold')
+call frontiers#highlight('htmlH6', s:palette.purple, s:palette.none, 'bold')
+call frontiers#highlight('htmlLink', s:palette.none, s:palette.none, 'underline')
+call frontiers#highlight('htmlBold', s:palette.none, s:palette.none, 'bold')
+call frontiers#highlight('htmlBoldUnderline', s:palette.none, s:palette.none, 'bold,underline')
+call frontiers#highlight('htmlBoldItalic', s:palette.none, s:palette.none, 'bold,italic')
+call frontiers#highlight('htmlBoldUnderlineItalic', s:palette.none, s:palette.none, 'bold,underline,italic')
+call frontiers#highlight('htmlUnderline', s:palette.none, s:palette.none, 'underline')
+call frontiers#highlight('htmlUnderlineItalic', s:palette.none, s:palette.none, 'underline,italic')
+call frontiers#highlight('htmlItalic', s:palette.none, s:palette.none, 'italic')
 highlight! link htmlTag Green
 highlight! link htmlEndTag Blue
 highlight! link htmlTagN OrangeItalic
@@ -2514,7 +2514,7 @@ highlight! link pythonNone Aqua
 highlight! link pythonDot Grey
 " }}}
 " semshi: https://github.com/numirias/semshi {{{
-call frontier#highlight('semshiUnresolved', s:palette.yellow, s:palette.none, 'undercurl')
+call frontiers#highlight('semshiUnresolved', s:palette.yellow, s:palette.none, 'undercurl')
 highlight! link semshiImported TSInclude
 highlight! link semshiParameter TSParameter
 highlight! link semshiParameterUnused Grey
@@ -2876,7 +2876,7 @@ highlight! link ps1BuiltIn Yellow
 " }}}
 " syn_end }}}
 " syn_begin: vim {{{
-call frontier#highlight('vimCommentTitle', s:palette.grey1, s:palette.none, 'bold')
+call frontiers#highlight('vimCommentTitle', s:palette.grey1, s:palette.none, 'bold')
 highlight! link vimLet Orange
 highlight! link vimFunction Green
 highlight! link vimIsCommand Fg
@@ -3052,7 +3052,7 @@ highlight! link yamlKey yamlBlockMappingKey  " stephpy/vim-yaml
 " syn_end }}}
 " syn_begin: toml {{{
 " builtin: https://github.com/cespare/vim-toml {{{
-call frontier#highlight('tomlTable', s:palette.orange, s:palette.none, 'bold')
+call frontiers#highlight('tomlTable', s:palette.orange, s:palette.none, 'bold')
 highlight! link tomlKey Green
 highlight! link tomlString Fg
 highlight! link tomlDate Special
@@ -3086,17 +3086,17 @@ endif
 " }}}
 " syn_end }}}
 " syn_begin: dosini {{{
-call frontier#highlight('dosiniHeader', s:palette.red, s:palette.none, 'bold')
+call frontiers#highlight('dosiniHeader', s:palette.red, s:palette.none, 'bold')
 highlight! link dosiniLabel Yellow
 highlight! link dosiniValue Green
 highlight! link dosiniNumber Green
 " syn_end }}}
 " syn_begin: help {{{
-call frontier#highlight('helpNote', s:palette.purple, s:palette.none, 'bold')
-call frontier#highlight('helpHeadline', s:palette.red, s:palette.none, 'bold')
-call frontier#highlight('helpHeader', s:palette.orange, s:palette.none, 'bold')
-call frontier#highlight('helpURL', s:palette.green, s:palette.none, 'underline')
-call frontier#highlight('helpHyperTextEntry', s:palette.yellow, s:palette.none, 'bold')
+call frontiers#highlight('helpNote', s:palette.purple, s:palette.none, 'bold')
+call frontiers#highlight('helpHeadline', s:palette.red, s:palette.none, 'bold')
+call frontiers#highlight('helpHeader', s:palette.orange, s:palette.none, 'bold')
+call frontiers#highlight('helpURL', s:palette.green, s:palette.none, 'underline')
+call frontiers#highlight('helpHyperTextEntry', s:palette.yellow, s:palette.none, 'bold')
 highlight! link helpHyperTextJump Yellow
 highlight! link helpCommand Aqua
 highlight! link helpExample Green
@@ -3110,7 +3110,7 @@ highlight! link NeotestNamespace Purple
 highlight! link NeotestFile Aqua
 highlight! link NeotestDir Directory
 highlight! link NeotestIndent NonText
-call frontier#highlight('NeotestExpandMarker', s:palette.bg5, s:palette.none)
+call frontiers#highlight('NeotestExpandMarker', s:palette.bg5, s:palette.none)
 highlight! link NeotestAdapterName Title
 highlight! link NeotestMarked Orange
 highlight! link NeotestTarget Red
@@ -3118,16 +3118,16 @@ endif
 " syn_end }}}
 " syn_begin: mason {{{
 " https://github.com/williamboman/mason.nvim
-call frontier#highlight('MasonHeader', s:palette.bg0, s:palette.green, 'bold')
-call frontier#highlight('MasonHeaderSecondary', s:palette.bg0, s:palette.orange, 'bold')
+call frontiers#highlight('MasonHeader', s:palette.bg0, s:palette.green, 'bold')
+call frontiers#highlight('MasonHeaderSecondary', s:palette.bg0, s:palette.orange, 'bold')
 highlight! link MasonHighlight Green
 highlight! link MasonHighlightSecondary Yellow
-call frontier#highlight('MasonHighlightBlock', s:palette.bg0, s:palette.aqua)
-call frontier#highlight('MasonHighlightBlockBold', s:palette.bg0, s:palette.aqua, 'bold')
-call frontier#highlight('MasonHighlightBlockSecondary', s:palette.bg0, s:palette.yellow)
-call frontier#highlight('MasonHighlightBlockBoldSecondary', s:palette.bg0, s:palette.yellow, 'bold')
-call frontier#highlight('MasonMuted', s:palette.grey0, s:palette.none)
-call frontier#highlight('MasonMutedBlock', s:palette.bg0, s:palette.grey0)
+call frontiers#highlight('MasonHighlightBlock', s:palette.bg0, s:palette.aqua)
+call frontiers#highlight('MasonHighlightBlockBold', s:palette.bg0, s:palette.aqua, 'bold')
+call frontiers#highlight('MasonHighlightBlockSecondary', s:palette.bg0, s:palette.yellow)
+call frontiers#highlight('MasonHighlightBlockBoldSecondary', s:palette.bg0, s:palette.yellow, 'bold')
+call frontiers#highlight('MasonMuted', s:palette.grey0, s:palette.none)
+call frontiers#highlight('MasonMutedBlock', s:palette.bg0, s:palette.grey0)
 " syn_end }}}
 " }}}
 

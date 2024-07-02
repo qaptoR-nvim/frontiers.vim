@@ -1,13 +1,13 @@
 -- =============================================================================
--- URL: https://github.com/qaptoR-nvim/frontier.nvim
--- Filename: lua/lualine/themes/frontier.lua
+-- URL: https://github.com/qaptoR-nvim/frontiers.nvim
+-- Filename: lua/lualine/themes/frontiers.lua
 -- Author: qaptoR
 -- Email: admin@roccoruscitti.ca
 -- License: MIT License
 -- =============================================================================
 
-local configuration = vim.fn["frontier#get_configuration"]()
-local palette = vim.fn["frontier#get_palette"](configuration.background, configuration.colors_override)
+local configuration = vim.fn["frontiers#get_configuration"]()
+local palette = vim.fn["frontiers#get_palette"](configuration.background, configuration.colors_override)
 
 if configuration.transparent_background == 2 then
 	palette.bg1 = palette.none

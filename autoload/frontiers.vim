@@ -1,36 +1,36 @@
-" URL: https://github.com/qaptoR-nvim/frontier.nvim
+" URL: https://github.com/qaptoR-nvim/frontiers.nvim
 " =============================================================================
-" Filename: autoload/frontier.vim
+" Filename: autoload/frontiers.vim
 " Author: qaptoR
 " Email: admin@roccoruscitti.ca
 " License: MIT License
 " =============================================================================
 
-function! frontier#get_configuration() "{{{
+function! frontiers#get_configuration() "{{{
   return {
-        \ 'background': get(g:, 'frontier_background', 'medium'),
-        \ 'transparent_background': get(g:, 'frontier_transparent_background', 0),
-        \ 'dim_inactive_windows': get(g:, 'frontier_dim_inactive_windows', 0),
-        \ 'disable_italic_comment': get(g:, 'frontier_disable_italic_comment', 0),
-        \ 'enable_italic': get(g:, 'frontier_enable_italic', 0),
-        \ 'cursor': get(g:, 'frontier_cursor', 'auto'),
-        \ 'sign_column_background': get(g:, 'frontier_sign_column_background', 'none'),
-        \ 'spell_foreground': get(g:, 'frontier_spell_foreground', 'none'),
-        \ 'ui_contrast': get(g:, 'frontier_ui_contrast', 'low'),
-        \ 'show_eob': get(g:, 'frontier_show_eob', 1),
-        \ 'float_style': get(g:, 'frontier_float_style', 'bright'),
-        \ 'current_word': get(g:, 'frontier_current_word', get(g:, 'frontier_transparent_background', 0) == 0 ? 'grey background' : 'bold'),
-        \ 'inlay_hints_background': get(g:, 'frontier_inlay_hints_background', 'none'),
-        \ 'lightline_disable_bold': get(g:, 'frontier_lightline_disable_bold', 0),
-        \ 'diagnostic_text_highlight': get(g:, 'frontier_diagnostic_text_highlight', 0),
-        \ 'diagnostic_line_highlight': get(g:, 'frontier_diagnostic_line_highlight', 0),
-        \ 'diagnostic_virtual_text': get(g:, 'frontier_diagnostic_virtual_text', 'grey'),
-        \ 'disable_terminal_colors': get(g:, 'frontier_disable_terminal_colors', 0),
-        \ 'better_performance': get(g:, 'frontier_better_performance', 0),
-        \ 'colors_override': get(g:, 'frontier_colors_override', {}),
+        \ 'background': get(g:, 'frontiers_background', 'medium'),
+        \ 'transparent_background': get(g:, 'frontiers_transparent_background', 0),
+        \ 'dim_inactive_windows': get(g:, 'frontiers_dim_inactive_windows', 0),
+        \ 'disable_italic_comment': get(g:, 'frontiers_disable_italic_comment', 0),
+        \ 'enable_italic': get(g:, 'frontiers_enable_italic', 0),
+        \ 'cursor': get(g:, 'frontiers_cursor', 'auto'),
+        \ 'sign_column_background': get(g:, 'frontiers_sign_column_background', 'none'),
+        \ 'spell_foreground': get(g:, 'frontiers_spell_foreground', 'none'),
+        \ 'ui_contrast': get(g:, 'frontiers_ui_contrast', 'low'),
+        \ 'show_eob': get(g:, 'frontiers_show_eob', 1),
+        \ 'float_style': get(g:, 'frontiers_float_style', 'bright'),
+        \ 'current_word': get(g:, 'frontiers_current_word', get(g:, 'frontiers_transparent_background', 0) == 0 ? 'grey background' : 'bold'),
+        \ 'inlay_hints_background': get(g:, 'frontiers_inlay_hints_background', 'none'),
+        \ 'lightline_disable_bold': get(g:, 'frontiers_lightline_disable_bold', 0),
+        \ 'diagnostic_text_highlight': get(g:, 'frontiers_diagnostic_text_highlight', 0),
+        \ 'diagnostic_line_highlight': get(g:, 'frontiers_diagnostic_line_highlight', 0),
+        \ 'diagnostic_virtual_text': get(g:, 'frontiers_diagnostic_virtual_text', 'grey'),
+        \ 'disable_terminal_colors': get(g:, 'frontiers_disable_terminal_colors', 0),
+        \ 'better_performance': get(g:, 'frontiers_better_performance', 0),
+        \ 'colors_override': get(g:, 'frontiers_colors_override', {}),
         \ }
 endfunction "}}}
-function! frontier#get_palette(background, colors_override) "{{{
+function! frontiers#get_palette(background, colors_override) "{{{
   if a:background ==# 'hard' "{{{
     if &background ==# 'dark'
       let palette1 = {
@@ -185,7 +185,7 @@ function! frontier#get_palette(background, colors_override) "{{{
   endif "}}}
   return extend(extend(palette1, palette2), a:colors_override)
 endfunction "}}}
-function! frontier#highlight(group, fg, bg, ...) "{{{
+function! frontiers#highlight(group, fg, bg, ...) "{{{
   execute 'highlight' a:group
         \ 'guifg=' . a:fg[0]
         \ 'guibg=' . a:bg[0]
@@ -201,54 +201,54 @@ function! frontier#highlight(group, fg, bg, ...) "{{{
           \ a:2[0] :
           \ 'NONE')
 endfunction "}}}
-function! frontier#syn_gen(path, last_modified, msg) "{{{
+function! frontiers#syn_gen(path, last_modified, msg) "{{{
   " Generate the `after/syntax` directory.
-  let full_content = join(readfile(a:path), "\n") " Get the content of `colors/frontier.vim`
+  let full_content = join(readfile(a:path), "\n") " Get the content of `colors/frontiers.vim`
   let syn_conent = []
-  let rootpath = frontier#syn_rootpath(a:path) " Get the path to place the `after/syntax` directory.
+  let rootpath = frontiers#syn_rootpath(a:path) " Get the path to place the `after/syntax` directory.
   call substitute(full_content, '" syn_begin.\{-}syn_end', '\=add(syn_conent, submatch(0))', 'g') " Search for 'syn_begin.\{-}syn_end' (non-greedy) and put all the search results into a list.
   for content in syn_conent
     let syn_list = []
     call substitute(matchstr(matchstr(content, 'syn_begin:.\{-}{{{'), ':.\{-}{{{'), '\(\w\|-\)\+', '\=add(syn_list, submatch(0))', 'g') " Get the file types. }}}}}}
     for syn in syn_list
-      call frontier#syn_write(rootpath, syn, content) " Write the content.
+      call frontiers#syn_write(rootpath, syn, content) " Write the content.
     endfor
   endfor
-  call frontier#syn_write(rootpath, 'text', "let g:frontier_last_modified = '" . a:last_modified . "'") " Write the last modified time to `after/syntax/text/frontier.vim`
+  call frontiers#syn_write(rootpath, 'text', "let g:frontiers_last_modified = '" . a:last_modified . "'") " Write the last modified time to `after/syntax/text/frontiers.vim`
   let syntax_relative_path = has('win32') ? '\after\syntax' : '/after/syntax'
   if a:msg ==# 'update'
-    echohl WarningMsg | echom '[frontier] Updated ' . rootpath . syntax_relative_path | echohl None
-    call frontier#ftplugin_detect(a:path)
+    echohl WarningMsg | echom '[frontiers] Updated ' . rootpath . syntax_relative_path | echohl None
+    call frontiers#ftplugin_detect(a:path)
   else
-    echohl WarningMsg | echom '[frontier] Generated ' . rootpath . syntax_relative_path | echohl None
+    echohl WarningMsg | echom '[frontiers] Generated ' . rootpath . syntax_relative_path | echohl None
     execute 'set runtimepath+=' . fnamemodify(rootpath, ':p') . 'after'
   endif
 endfunction "}}}
-function! frontier#syn_write(rootpath, syn, content) "{{{
+function! frontiers#syn_write(rootpath, syn, content) "{{{
   " Write the content.
-  let syn_path = a:rootpath . '/after/syntax/' . a:syn . '/frontier.vim' " The path of a syntax file.
+  let syn_path = a:rootpath . '/after/syntax/' . a:syn . '/frontiers.vim' " The path of a syntax file.
   " create a new file if it doesn't exist
   if !filereadable(syn_path)
     call mkdir(a:rootpath . '/after/syntax/' . a:syn, 'p')
     call writefile([
-          \ "if !exists('g:colors_name') || g:colors_name !=# 'frontier'",
+          \ "if !exists('g:colors_name') || g:colors_name !=# 'frontiers'",
           \ '    finish',
           \ 'endif'
-          \ ], syn_path, 'a') " Abort if the current color scheme is not frontier.
+          \ ], syn_path, 'a') " Abort if the current color scheme is not frontiers.
     call writefile([
-          \ "if index(g:frontier_loaded_file_types, '" . a:syn . "') ==# -1",
-          \ "    call add(g:frontier_loaded_file_types, '" . a:syn . "')",
+          \ "if index(g:frontiers_loaded_file_types, '" . a:syn . "') ==# -1",
+          \ "    call add(g:frontiers_loaded_file_types, '" . a:syn . "')",
           \ 'else',
           \ '    finish',
           \ 'endif'
           \ ], syn_path, 'a') " Abort if this file type has already been loaded.
   endif
-  " If there is something like `call frontier#highlight()`, then add
+  " If there is something like `call frontiers#highlight()`, then add
   " code to initialize the palette and configuration.
-  if matchstr(a:content, 'frontier#highlight') !=# ''
+  if matchstr(a:content, 'frontiers#highlight') !=# ''
     call writefile([
-          \ 'let s:configuration = frontier#get_configuration()',
-          \ 'let s:palette = frontier#get_palette(s:configuration.background, s:configuration.colors_override)'
+          \ 'let s:configuration = frontiers#get_configuration()',
+          \ 'let s:palette = frontiers#get_palette(s:configuration.background, s:configuration.colors_override)'
           \ ], syn_path, 'a')
   endif
   " Append the content.
@@ -256,7 +256,7 @@ function! frontier#syn_write(rootpath, syn, content) "{{{
   " Add modeline.
   call writefile(['" vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:'], syn_path, 'a')
 endfunction "}}}
-function! frontier#syn_rootpath(path) "{{{
+function! frontiers#syn_rootpath(path) "{{{
   " Get the directory where `after/syntax` is generated.
   if (matchstr(a:path, '^/usr/share') ==# '') " Return the plugin directory. The `after/syntax` directory should never be generated in `/usr/share`, even if you are a root user.
     return fnamemodify(a:path, ':p:h:h')
@@ -268,17 +268,17 @@ function! frontier#syn_rootpath(path) "{{{
     endif
   endif
 endfunction "}}}
-function! frontier#syn_newest(path, last_modified) "{{{
-  " Determine whether the current syntax files are up to date by comparing the last modified time in `colors/frontier.vim` and `after/syntax/text/frontier.vim`.
-  let rootpath = frontier#syn_rootpath(a:path)
-  execute 'source ' . rootpath . '/after/syntax/text/frontier.vim'
-  return a:last_modified ==# g:frontier_last_modified ? 1 : 0
+function! frontiers#syn_newest(path, last_modified) "{{{
+  " Determine whether the current syntax files are up to date by comparing the last modified time in `colors/frontiers.vim` and `after/syntax/text/frontiers.vim`.
+  let rootpath = frontiers#syn_rootpath(a:path)
+  execute 'source ' . rootpath . '/after/syntax/text/frontiers.vim'
+  return a:last_modified ==# g:frontiers_last_modified ? 1 : 0
 endfunction "}}}
-function! frontier#syn_clean(path, msg) "{{{
+function! frontiers#syn_clean(path, msg) "{{{
   " Clean the `after/syntax` directory.
-  let rootpath = frontier#syn_rootpath(a:path)
-  " Remove `after/syntax/**/frontier.vim`.
-  let file_list = split(globpath(rootpath, 'after/syntax/**/frontier.vim'), "\n")
+  let rootpath = frontiers#syn_rootpath(a:path)
+  " Remove `after/syntax/**/frontiers.vim`.
+  let file_list = split(globpath(rootpath, 'after/syntax/**/frontiers.vim'), "\n")
   for file in file_list
     call delete(file)
   endfor
@@ -297,20 +297,20 @@ function! frontier#syn_clean(path, msg) "{{{
   endif
   if a:msg
     let syntax_relative_path = has('win32') ? '\after\syntax' : '/after/syntax'
-    echohl WarningMsg | echom '[frontier] Cleaned ' . rootpath . syntax_relative_path | echohl None
+    echohl WarningMsg | echom '[frontiers] Cleaned ' . rootpath . syntax_relative_path | echohl None
   endif
 endfunction "}}}
-function! frontier#syn_exists(path) "{{{
-  return filereadable(frontier#syn_rootpath(a:path) . '/after/syntax/text/frontier.vim')
+function! frontiers#syn_exists(path) "{{{
+  return filereadable(frontiers#syn_rootpath(a:path) . '/after/syntax/text/frontiers.vim')
 endfunction "}}}
-function! frontier#ftplugin_detect(path) "{{{
+function! frontiers#ftplugin_detect(path) "{{{
   " Check if /after/ftplugin exists.
   " This directory is generated in earlier versions, users may need to manually clean it.
-  let rootpath = frontier#syn_rootpath(a:path)
-  if filereadable(frontier#syn_rootpath(a:path) . '/after/ftplugin/text/frontier.vim')
+  let rootpath = frontiers#syn_rootpath(a:path)
+  if filereadable(frontiers#syn_rootpath(a:path) . '/after/ftplugin/text/frontiers.vim')
     let ftplugin_relative_path = has('win32') ? '\after\ftplugin' : '/after/ftplugin'
-    echohl WarningMsg | echom '[frontier] Detected ' . rootpath . ftplugin_relative_path | echohl None
-    echohl WarningMsg | echom '[frontier] This directory is no longer used, you may need to manually delete it.' | echohl None
+    echohl WarningMsg | echom '[frontiers] Detected ' . rootpath . ftplugin_relative_path | echohl None
+    echohl WarningMsg | echom '[frontiers] This directory is no longer used, you may need to manually delete it.' | echohl None
   endif
 endfunction "}}}
 
