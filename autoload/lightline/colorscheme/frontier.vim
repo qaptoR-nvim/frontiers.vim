@@ -1,14 +1,14 @@
 " =============================================================================
-" URL: https://github.com/sainnhe/everforest
-" Filename: autoload/lightline/colorscheme/everforest.vim
-" Author: sainnhe
-" Email: i@sainnhe.dev
+" URL: https://github.com/qaptoR-nvim/frontier.nvim
+" Filename: autoload/lightline/colorscheme/frontier.vim
+" Author: qaptoR
+" Email: admin@roccoruscitti.ca
 " License: MIT License
 " =============================================================================
 
 " Initialization: {{{
-let s:configuration = everforest#get_configuration()
-let s:palette = everforest#get_palette(s:configuration.background, s:configuration.colors_override)
+let s:configuration = frontier#get_configuration()
+let s:palette = frontier#get_palette(s:configuration.background, s:configuration.colors_override)
 if s:configuration.transparent_background == 2
   let s:palette.bg1 = s:palette.none
 endif
@@ -161,7 +161,7 @@ if s:configuration.lightline_disable_bold
   let s:p.tabline.tabsel = [ [ s:tab_sel_fg, s:tab_sel_bg ] ]
 endif
 
-let g:lightline#colorscheme#everforest#palette = lightline#colorscheme#flatten(s:p)
+let g:lightline#colorscheme#frontier#palette = lightline#colorscheme#flatten(s:p)
 "}}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:

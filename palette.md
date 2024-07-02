@@ -76,7 +76,7 @@ contrast settings.
 
 |                    | Hex     | Identifier    | Usages                                                                                                                    |
 |--------------------|---------|---------------|---------------------------------------------------------------------------------------------------------------------------|
-| ![#232A2E][hl_bgd] | #232A2E | `bg_dim`      | Dimmed Background                                                                                                         |
+| ![#232A2E][hl_bgd] | #232A2E | `bg0_h`      | Dimmed Background                                                                                                         |
 | ![#2D353B][hl_bg0] | #2D353B | `bg0`         | Default Background, Line Numbers Background, Signs Background, Status Line Background (inactive), Tab Line Label (active) |
 | ![#343F44][hl_bg1] | #343F44 | `bg1`         | Cursor Line Background, Color Columns, Closed Folds Background, Status Line Background (active), Tab Line Background      |
 | ![#3D484D][hl_bg2] | #3D484D | `bg2`         | Popup Menu Background, Floating Window Background, Window Toolbar Background                                              |
@@ -105,7 +105,7 @@ contrast settings.
 
 
 <!-- dark hard palette1 -->
-[1E2326]: https://fakeimg.pl/96/1E2326/D3C6AA/?text=%231E2326&font=noto&font_size=12 "bg_dim - #1E2326"
+[1E2326]: https://fakeimg.pl/96/1E2326/D3C6AA/?text=%231E2326&font=noto&font_size=12 "bg0_h - #1E2326"
 [272E33]: https://fakeimg.pl/96/272E33/D3C6AA/?text=%23272E33&font=noto&font_size=12 "bg0 - #272E33"
 [2E383C]: https://fakeimg.pl/96/2E383C/D3C6AA/?text=%232E383C&font=noto&font_size=12 "bg1 - #2E383C"
 [374145]: https://fakeimg.pl/96/374145/D3C6AA/?text=%23374145&font=noto&font_size=12 "bg2 - #374145"
@@ -119,7 +119,7 @@ contrast settings.
 [45443c]: https://fakeimg.pl/96/45443c/D3C6AA/?text=%2345443c&font=noto&font_size=12 "bg_yellow - #45443c"
 
 <!-- dark medium palette1 -->
-[232A2E]: https://fakeimg.pl/96/232A2E/D3C6AA/?text=%23232A2E&font=noto&font_size=12 "bg_dim - #232A2E"
+[232A2E]: https://fakeimg.pl/96/232A2E/D3C6AA/?text=%23232A2E&font=noto&font_size=12 "bg0_h - #232A2E"
 [2D353B]: https://fakeimg.pl/96/2D353B/D3C6AA/?text=%232D353B&font=noto&font_size=12 "bg0 - #2D353B"
 [343F44]: https://fakeimg.pl/96/343F44/D3C6AA/?text=%23343F44&font=noto&font_size=12 "bg1 - #343F44"
 [3D484D]: https://fakeimg.pl/96/3D484D/D3C6AA/?text=%233D484D&font=noto&font_size=12 "bg2 - #3D484D"
@@ -133,7 +133,7 @@ contrast settings.
 [4D4C43]: https://fakeimg.pl/96/4D4C43/D3C6AA/?text=%234D4C43&font=noto&font_size=12 "bg_yellow - #4D4C43"
 
 <!-- dark low palette1 -->
-[293136]: https://fakeimg.pl/96/293136/D3C6AA/?text=%23293136&font=noto&font_size=12 "bg_dim - #293136"
+[293136]: https://fakeimg.pl/96/293136/D3C6AA/?text=%23293136&font=noto&font_size=12 "bg0_h - #293136"
 [333C43]: https://fakeimg.pl/96/333C43/D3C6AA/?text=%23333C43&font=noto&font_size=12 "bg0 - #333C43"
 [3A464C]: https://fakeimg.pl/96/3A464C/D3C6AA/?text=%233A464C&font=noto&font_size=12 "bg1 - #3A464C"
 [434F55]: https://fakeimg.pl/96/434F55/D3C6AA/?text=%23434F55&font=noto&font_size=12 "bg2 - #434F55"
@@ -147,7 +147,7 @@ contrast settings.
 [55544A]: https://fakeimg.pl/96/55544A/D3C6AA/?text=%2355544A&font=noto&font_size=12 "bg_yellow - #55544A"
 
 <!-- light hard palette1 -->
-[F2EFDF]: https://fakeimg.pl/96/F2EFDF/5C6A72/?text=%23F2EFDF&font=noto&font_size=12 "bg_dim/bg2 - #F2EFDF"
+[F2EFDF]: https://fakeimg.pl/96/F2EFDF/5C6A72/?text=%23F2EFDF&font=noto&font_size=12 "bg0_h/bg2 - #F2EFDF"
 [FFFBEF]: https://fakeimg.pl/96/FFFBEF/5C6A72/?text=%23FFFBEF&font=noto&font_size=12 "bg0 - #FFFBEF"
 [F8F5E4]: https://fakeimg.pl/96/F8F5E4/5C6A72/?text=%23F8F5E4&font=noto&font_size=12 "bg1 - #F8F5E4"
 [EDEADA]: https://fakeimg.pl/96/EDEADA/5C6A72/?text=%23EDEADA&font=noto&font_size=12 "bg3 - #EDEADA"
@@ -160,7 +160,7 @@ contrast settings.
 [FEF2D5]: https://fakeimg.pl/96/FEF2D5/5C6A72/?text=%23FEF2D5&font=noto&font_size=12 "bg_yellow - #FEF2D5"
 
 <!-- light medium palette1 -->
-[EFEBD4]: https://fakeimg.pl/96/EFEBD4/5C6A72/?text=%23EFEBD4&font=noto&font_size=12 "bg_dim/bg2 - #EFEBD4"
+[EFEBD4]: https://fakeimg.pl/96/EFEBD4/5C6A72/?text=%23EFEBD4&font=noto&font_size=12 "bg0_h/bg2 - #EFEBD4"
 [FDF6E3]: https://fakeimg.pl/96/FDF6E3/5C6A72/?text=%23FDF6E3&font=noto&font_size=12 "bg0 - #FDF6E3"
 [F4F0D9]: https://fakeimg.pl/96/F4F0D9/5C6A72/?text=%23F4F0D9&font=noto&font_size=12 "bg1 - #F4F0D9"
 [E6E2CC]: https://fakeimg.pl/96/E6E2CC/5C6A72/?text=%23E6E2CC&font=noto&font_size=12 "bg3 - #E6E2CC"
@@ -173,7 +173,7 @@ contrast settings.
 [FAEDCD]: https://fakeimg.pl/96/FAEDCD/5C6A72/?text=%23FAEDCD&font=noto&font_size=12 "bg_yellow - #FAEDCD"
 
 <!-- light low palette1 -->
-[E5DFC5]: https://fakeimg.pl/96/E5DFC5/5C6A72/?text=%23E5DFC5&font=noto&font_size=12 "bg_dim/bg2 - #E5DFC5"
+[E5DFC5]: https://fakeimg.pl/96/E5DFC5/5C6A72/?text=%23E5DFC5&font=noto&font_size=12 "bg0_h/bg2 - #E5DFC5"
 [F3EAD3]: https://fakeimg.pl/96/F3EAD3/5C6A72/?text=%23F3EAD3&font=noto&font_size=12 "bg0 - #F3EAD3"
 [EAE4CA]: https://fakeimg.pl/96/EAE4CA/5C6A72/?text=%23EAE4CA&font=noto&font_size=12 "bg1 - #EAE4CA"
 [DDD8BE]: https://fakeimg.pl/96/DDD8BE/5C6A72/?text=%23DDD8BE&font=noto&font_size=12 "bg3 - #DDD8BE"
@@ -215,7 +215,7 @@ contrast settings.
 [E66868]: https://fakeimg.pl/96/E66868/FDF6E3/?text=%23E66868&font=noto&font_size=12 "statusline3 - #E66868"
 
 <!-- highlights descriptions (dark medium values) -->
-[hl_bgd]: https://fakeimg.pl/48/232A2E/232A2E/ "bg_dim - #232A2E"
+[hl_bgd]: https://fakeimg.pl/48/232A2E/232A2E/ "bg0_h - #232A2E"
 [hl_bg0]: https://fakeimg.pl/48/2D353B/2D353B/ "bg0 - #2D353B"
 [hl_bg1]: https://fakeimg.pl/48/343F44/343F44/ "bg1 - #343F44"
 [hl_bg2]: https://fakeimg.pl/48/3D484D/3D484D/ "bg2 - #3D484D"
